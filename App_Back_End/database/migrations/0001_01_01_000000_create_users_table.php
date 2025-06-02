@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedBigInteger('function_id');
+            $table->unsignedBigInteger('role_id');
+            $table->string('emergency_contact');
+            $table->string('blood_type');
+            $table->foreign('function_id')->references('id')->on('functions');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
