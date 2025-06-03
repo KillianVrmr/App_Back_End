@@ -65,6 +65,11 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
+    public function showLogoutForm()
+    {
+        return view('auth.logout');
+    }
+
     // Handle logout
     public function logout(Request $request): RedirectResponse
     {
