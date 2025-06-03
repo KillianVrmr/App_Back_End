@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->dateTime('end_date');
             $table->unsignedBigInteger('file_id');
+            $table->string('contact_person');
+            $table->string('contact_phone');
             $table->timestamps();
         });
     }

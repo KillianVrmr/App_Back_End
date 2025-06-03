@@ -21,7 +21,15 @@
         </div>
         <div>
             <label for="filename">Upload File:</label>
-            <input type="file" id="filename" name="filename" accept=".pdf,.docx,.txt" required>
+            <input type="file" id="filename" name="filename" accept=".jpg,.png,.JPEG" required>
+        </div>
+        <div>
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person" required>
+        </div>
+        <div>
+            <label for="contact_phone">Contact Phone:</label>
+            <input type="tel" id="contact_phone" name="contact_phone" required>
         </div>
         <button type="submit">Create Project</button>
         </div>

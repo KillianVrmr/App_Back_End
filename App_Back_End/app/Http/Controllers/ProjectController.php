@@ -16,7 +16,9 @@ class ProjectController extends Controller
             'description' => 'nullable|string',
             'end_date' => 'required|date',
             'location' => 'nullable|string|max:255',
-            'filename' => 'required|file|mimes:pdf,docx,txt|max:2048',
+            'filename' => 'required|file|mimes:jpg,png,JPEG|max:2048',
+            'contact_person' => 'required|string|max:255',
+            'contact_phone' => 'required|string|max:15',
        
         ]);
 
