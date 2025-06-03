@@ -18,11 +18,14 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'firstname', 'lastname', 'email', 'password',
+        'function_id', 'role_id', 'emergency_contact', 'blood_type'
     ];
-
+    
+    public function function()
+    {
+        return $this->belongsTo(FunctionModel::class, 'function_id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -33,6 +36,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'user_project');
+    }
     /**
      * Get the attributes that should be cast.
      *
