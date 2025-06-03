@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('message_id');
             $table->unsignedBigInteger('file_id');
-            $table->foreign('message_id')->references('id')->on('messages');
-            $table->foreign('file_id')->references('id')->on('files');
             $table->timestamps();
         });
     }

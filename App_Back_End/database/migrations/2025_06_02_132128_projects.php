@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('contact');
             $table->dateTime('date');
             $table->unsignedBigInteger('file_id');
-            $table->foreign('file_id')->references('id')->on('files');
             $table->timestamps();
         });
     }

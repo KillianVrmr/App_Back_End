@@ -19,8 +19,6 @@ return new class extends Migration
             $table->boolean('visible');
             $table->unsignedBigInteger('chat_id');
             $table->unsignedBigInteger('new_column');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('chat_id')->references('id')->on('chats');
             $table->timestamps();
         });
     }

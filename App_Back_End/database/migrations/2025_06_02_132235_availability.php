@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->date('date');
             $table->boolean('available');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

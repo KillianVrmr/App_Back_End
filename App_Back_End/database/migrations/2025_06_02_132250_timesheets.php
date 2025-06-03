@@ -17,8 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('hours_worked');
             $table->date('date');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
         });
     }
