@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\Projects; 
 class ProjectsSeeder extends Seeder
 {
     /**
@@ -12,7 +12,7 @@ class ProjectsSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::insert([
+        Projects::insert([
             ['name' => 'Project Alpha', 'description' => 'Alpha Desc', 'contact' => 'alice@example.com', 'date' => now(), 'file_id' => 1],
             ['name' => 'Project Beta', 'description' => 'Beta Desc', 'contact' => 'bob@example.com', 'date' => now(), 'file_id' => 2],
             ['name' => 'Project Gamma', 'description' => 'Gamma Desc', 'contact' => 'carol@example.com', 'date' => now(), 'file_id' => 3],

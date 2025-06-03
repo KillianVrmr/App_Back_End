@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\Availability; // Ensure you import the Availability model
 class AvailabilitySeeder extends Seeder
 {
     /**

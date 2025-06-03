@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\UserPermissions; // Ensure you import the UserPermission model
 class UsersPermissionsSeeder extends Seeder
 {
     /**

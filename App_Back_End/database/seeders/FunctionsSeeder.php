@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Function; // Ensure you import the Function model
+use App\Models\Functions; // Ensure you import the Function model
 
 class FunctionsSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class FunctionsSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Function::insert([
+        \App\Models\Functions::insert([
             ['name' => 1],
             ['name' => 2],
             ['name' => 3],
