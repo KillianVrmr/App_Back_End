@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Projects extends Model
 {
-     protected $fillable = ['name', 'description', 'contact', 'date', 'file_id'];
+    use HasFactory;
+    protected $fillable = ['name', 'description', 'location', 'end_date', 'file_id'];
 
     public function file()
     {

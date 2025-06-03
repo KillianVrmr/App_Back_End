@@ -1,7 +1,7 @@
 <div>
     <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
     <h1>Create a New Project</h1>
-    <form action="{{ route('projects.store') }}" method="POST">
+    <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="name">Project Name:</label>
@@ -12,12 +12,32 @@
             <textarea id="description" name="description" required></textarea>
         </div>
         <div>
-            <label for="date">Start Date:</label>
-            <input type="date" id="date" name="date" required>
+            <label for="date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
         </div>
         <div>
             <label for="location">location:</label>
-            <input type="text" id="location" name="locatie" required>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <div>
+            <label for="filename">Upload File:</label>
+            <input type="file" id="filename" name="filename" accept=".pdf,.docx,.txt" required>
         </div>
         <button type="submit">Create Project</button>
-</div>
+        </div>
+        
+        @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        

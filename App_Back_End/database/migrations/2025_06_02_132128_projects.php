@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('contact');
-            $table->dateTime('date');
+            $table->string('location')->nullable();
+            $table->dateTime('end_date');
             $table->unsignedBigInteger('file_id');
             $table->timestamps();
         });
