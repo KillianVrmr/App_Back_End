@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,6 +50,15 @@ Route::middleware('guest')->group(function() {
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 
+Route::get('/availability', function () {
+    return view('availability');
+});
+
+
+Route::get('/availability', [AvailabilityController::class, 'indexView']);
+Route::get('/availability/data', [AvailabilityController::class, 'indexData']);
+Route::post('/availability', [AvailabilityController::class, 'store']);
+ 
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'showLogoutForm'])->name('logout');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
@@ -59,3 +69,4 @@ Route::middleware('auth')->group(function() {
 Route::get('/sidebar', function () {
     return view('components.sidebar');
 });
+
