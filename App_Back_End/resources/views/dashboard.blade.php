@@ -1,7 +1,14 @@
 <div>
     <h1>Dashboard</h1>
     <div class="project-list">
-        <h2>Your Projects</h2>
+        <h2>All Projects</h2>
+
+        <form method="GET" action="{{ route('dashboard') }}">
+            <label for="locationFilter">Location:</label>
+            <input type="text" id="locationFilter" name="location" value="{{ request('location') }}" placeholder="Enter location to filter">
+            <button type="submit">Filter</button>
+        </form> 
+        
         @if($projects->isEmpty())
             <p>No projects found. <a href="{{ route('projects.create') }}">Create a new project</a>.</p>
         @else
