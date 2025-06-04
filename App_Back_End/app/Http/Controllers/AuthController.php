@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Validation\Rules\Password;
+
 
 class AuthController extends Controller
 {
@@ -22,15 +24,44 @@ class AuthController extends Controller
     {
         // validate user input
         $request->validate([
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'emergency_contact' => 'required|string|max:255',
+            'contact_number' => 'required|string|max:255',
+            'blood_type' => 'required|string|max:255',
             'email' => 'required|string|max:255|email|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => ['required', 'confirmed', Password::min(8)
+                                                     ->mixedCase()
+                                                     ->letters()
+                                                     ->numbers()
+                                                     ->symbols()],
+            'function_id' => 'nullable|int|min:1',
+            'role_id' => 'nullable|int|min:1',
+
+            
+        ], [
+            'firstname.required' => 'Voornaam is verplicht.',
+            'lastname.required' => 'Achternaam is verplicht.',
+            'email.required' => 'E-mailadres is verplicht.',
+            'email.email' => 'Geef een geldig e-mailadres op.',
+            'email.unique' => 'Dit e-mailadres is al in gebruik.',
+            'password.required' => 'Wachtwoord is verplicht.',
+            'password.confirmed' => 'Wachtwoorden komen niet overeen.',
+            'emergency_contact.required' => 'Contactpersoon voor noodgevallen is verplicht.',
+            'contact_number.required' => 'Telefoonnummer van de contactpersoon is verplicht.',
+            'blood_type.required' => 'Bloedgroep is verplicht.',
         ]);
 
         // Create the user
         User::create([
-            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
             'email' => $request->email,
+            'emergency_contact' => $request->emergency_contact,
+            'contact_number' => $request->contact_number,
+            'blood_type' => $request->blood_type,
+            'function_id' => $request->function_id,
+            'role_id' => $request->role_id ?? 1,
             'password' => Hash::make($request->password),
         ]);
 

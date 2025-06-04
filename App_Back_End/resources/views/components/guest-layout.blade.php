@@ -7,7 +7,7 @@
 
     @vite('resources/css/app.css')
     <!-- Tailwind CDN -->
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
      
 </head>
 <body class="flex">

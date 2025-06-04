@@ -7,17 +7,62 @@
         <form method="POST" action="{{ route('register.post') }}" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl">
             @csrf 
             <div class="flex flex-col space-y-4">
-                <input name="email" type="email" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="E-mail" required>
-                <input name="firstname" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="Voornaam" required>
-                <input name="lastName" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="Achternaam" required>
-                <input name="password" type="password" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="Wachtwoord" required>
-                <input name="repeatPassword" type="password" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="Herhaal wachtwoord" required>
+                <div>
+                <input name="email" type="email" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="E-mail" required>
+                @error('email')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror    
+                </div>
+                <div>
+                <input name="firstname" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('firstname') is-invalid @enderror" value="{{ old('firstname') }}" placeholder="Voornaam" required>
+                @error('firstname')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror 
+                </div>
+                <div>
+                <input name="lastname" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('lastname') is-invalid @enderror" value="{{ old('lastname') }}" placeholder="Achternaam" required>
+                @error('lastname')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror 
+                </div>
+                <div>
+                <input name="password" type="password" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Wachtwoord" required>
+                @error('password')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror 
+                </div>
+                <div>
+                <input name="password_confirmation" type="password" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}" placeholder="Herhaal wachtwoord" required>
+                @error('password_confirmation')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror 
+                </div>
             </div>
             <div class="flex flex-col space-y-4">
-                <input name="function" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="Functie" required>
-                <input name="bloodType" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="Bloed groep">
-                <input name="emergencyContact" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="Contactpersoon voor noodgevallen" required>
-                <input name="contactNumber" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full" placeholder="telefoonnummer contactpersoon" required>
+                <div>
+                <input name="function_id" type="number" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('function_id') is-invalid @enderror" value="{{ old('function_id') }}" placeholder="Functie">
+                @error('function_id')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror    
+                </div>
+                <div>
+                <input name="blood_type" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('blood_type') is-invalid @enderror" value="{{ old('blood_type') }}" placeholder="Bloed groep">
+                @error('blood_type')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror    
+                </div>
+                <div>
+                <input name="emergency_contact" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('emergency_contact') is-invalid @enderror" value="{{ old('emergency_contact') }}" placeholder="Contactpersoon voor noodgevallen" required>
+                @error('emergency_contact')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror    
+                </div>
+                <div>
+                <input name="contact_number" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('contact_number') is-invalid @enderror" value="{{ old('contact_number') }}" placeholder="telefoonnummer contactpersoon" required>
+                @error('contact_number')
+                <div class="invalid-feedback text-red-500">{{ $message }}</div>
+                @enderror    
+                </div>
             </div>
 
             <div class="md:col-span-2 mt-6 flex justify-end">
