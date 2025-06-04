@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,3 +30,11 @@ Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
 })->name('dashboard');
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.project');
+
+Route::get('/projects/{project}/crew', function (\App\Models\Projects $project) {
+    $project->load('users');
+    $users = User::all(); 
+    return view('projects.crew', compact('project', 'users'));
+})->name('projects.crew');
+
+Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assignCrew'])->name('projects.assignCrew');

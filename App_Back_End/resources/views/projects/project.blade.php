@@ -14,7 +14,7 @@
         <p>No image available for this project.</p>
     @endif
 
-
+    <a href="{{ route('projects.crew', $project->id) }}">View Crew</a>
     <div>
         <a href="{{ route('dashboard') }}">Back to Dashboard</a>
     </div>

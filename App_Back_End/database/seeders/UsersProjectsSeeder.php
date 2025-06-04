@@ -13,11 +13,11 @@ class UsersProjectsSeeder extends Seeder
     public function run(): void
     {
         \DB::table('user_project')->insert([
-            ['user_id' => 1, 'project_id' => 1],
-            ['user_id' => 2, 'project_id' => 2],
-            ['user_id' => 3, 'project_id' => 3],
-            ['user_id' => 4, 'project_id' => 4],
-            ['user_id' => 5, 'project_id' => 5],
+            ['user_id' => 1, 'projects_id' => 1],
+            ['user_id' => 2, 'projects_id' => 2],
+            ['user_id' => 3, 'projects_id' => 3],
+            ['user_id' => 4, 'projects_id' => 4],
+            ['user_id' => 5, 'projects_id' => 5],
         ]);
     }
 }

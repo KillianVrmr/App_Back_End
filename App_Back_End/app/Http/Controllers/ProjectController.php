@@ -51,4 +51,20 @@ class ProjectController extends Controller
 
     return view('projects.project', compact('project'));
     }
+
+    public function assignCrew(Request $request, $projectId)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $project = Projects::findOrFail($projectId);
+        $user = \App\Models\User::findOrFail($request->input('user_id'));
+
+        // Attach the user to the project
+        $project->users()->attach($user);
+
+        return redirect()->route('projects.crew', ['project' => $projectId])
+                         ->with('success', 'Crew member assigned successfully!');
+    }
 }
