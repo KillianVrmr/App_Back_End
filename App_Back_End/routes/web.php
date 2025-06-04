@@ -18,4 +18,16 @@ Route::middleware('guest')->group(function() {
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'showLogoutForm'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.post');
+    });
+ 
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/create_project', function () {
+    return view('create_project');
+});
+
+//for testing
+Route::get('/sidebar', function () {
+    return view('components.sidebar');
 });
