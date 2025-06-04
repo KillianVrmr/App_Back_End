@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_project', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('projects_id');
              $table->timestamps();
         });
     }
