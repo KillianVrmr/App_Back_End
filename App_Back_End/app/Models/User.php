@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'firstname', 'lastname', 'email', 'password',
-        'function_id', 'role_id', 'emergency_contact', 'blood_type'
+        'function_id', 'role_id', 'emergency_contact', 'blood_type', 'contact_number',
     ];
     
     public function function()
