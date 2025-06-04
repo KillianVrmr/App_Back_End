@@ -8,7 +8,7 @@
             <ul>
                 @foreach($projects as $project)
                     <li>
-                        <a href="{{ route('projects.show', $project->id) }}">{{ $project->name }}</a>
+                        <a href="{{ route('projects.project', $project->id) }}">{{ $project->name }}</a>
                         - {{ $project->description }}
 
                         <span class="date">End Date: {{ $project->end_date->format('Y-m-d') }}</span>

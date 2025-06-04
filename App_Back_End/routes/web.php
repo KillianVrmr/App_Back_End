@@ -19,4 +19,5 @@ Route::get('/dashboard', function () {
     $projects = \App\Models\Projects::all();
     return view('dashboard', compact('projects'));
 })->name('dashboard');
-Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
+
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.project');

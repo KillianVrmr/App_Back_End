@@ -24,4 +24,5 @@ class Projects extends Model
     {
         return $this->belongsToMany(User::class, 'user_project');
     }
+    
 }

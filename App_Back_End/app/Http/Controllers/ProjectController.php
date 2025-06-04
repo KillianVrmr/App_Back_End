@@ -42,4 +42,13 @@ class ProjectController extends Controller
         // Redirect or respond as needed
         return redirect()->route('create_project')->with('success', 'Project created successfully!');
     }
+
+    
+    public function show($id)
+    {
+        
+    $project = Projects::findOrFail($id); // throws 404 if not found
+
+    return view('projects.project', compact('project'));
+    }
 }
