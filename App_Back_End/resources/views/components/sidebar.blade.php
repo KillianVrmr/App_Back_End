@@ -39,7 +39,7 @@
 
                 <!-- Logout at the bottom -->
                 <div>
-                    <a href="#" class="text-white hover:text-green transition-colors text-sm">Logout</a>
+                    <a href="{{ route('logout.get') }}" class="text-white hover:text-green transition-colors text-sm">Logout</a>
                 </div>
             </nav>
         </div>

@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_project', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('projects_id');
-             $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+             $table->string('contact_number')->after('emergency_contact');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('user_project');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };
