@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,3 +40,14 @@ Route::get('/projects/{project}/crew', function (\App\Models\Projects $project) 
 })->name('projects.crew');
 
 Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assignCrew'])->name('projects.assignCrew');
+
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+ 
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+ 
+    // $user->token
+});
