@@ -3,6 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import nlLocale from '@fullcalendar/core/locales/nl';
 
+
 let selectedDateRange = null;
 let calendar;
 
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 end: info.endStr
             } 
         },
-        events: '/api/availability',  
+        events: '/availability',  
     })
 
     calendar.render()
@@ -45,7 +46,7 @@ function sendAvailabilityForRange(dateRange, available) {
     
     // Send availability for each date
     const promises = dates.map(date => {
-        return fetch('/api/availability', {
+        return fetch('/availability', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
