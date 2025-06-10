@@ -50,14 +50,7 @@ Route::middleware('guest')->group(function() {
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 
-Route::get('/availability', function () {
-    return view('availability');
-});
-
-
-Route::get('/availability', [AvailabilityController::class, 'indexView']);
-Route::get('/availability/data', [AvailabilityController::class, 'indexData']);
-Route::post('/availability', [AvailabilityController::class, 'store']);
+Route::get('/beschikbaarheid', [AvailabilityController::class, 'indexView']);
  
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'showLogoutForm'])->name('logout');

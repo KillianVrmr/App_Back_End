@@ -14,9 +14,18 @@ class AvailabilityController extends Controller
     }
 
     // Return availability data (for FullCalendar)
-    public function indexData()
+    public function indexData(Request $request)
     {
-        return Availability::where('user_id', 1) // Replace later!!
+        $start = $request->query('start');
+        $end = $request->query('end');
+    
+        // Zorg dat start en end gezet zijn, anders fallback
+        if (!$start || !$end) {
+            return response()->json([], 400);
+        }
+    
+        $availabilities = Availability::where('user_id', 1) // pas aan naar auth()->id() als nodig
+            ->whereBetween('date', [$start, $end])
             ->get()
             ->map(function ($availability) {
                 return [
@@ -26,6 +35,8 @@ class AvailabilityController extends Controller
                     'color' => $availability->available ? '#04b5a9' : '#999',
                 ];
             });
+    
+        return response()->json($availabilities);
     }
 
     // Store or update availability
