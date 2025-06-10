@@ -24,7 +24,7 @@ class AuthController extends Controller
     {
         // validate user input
         $request->validate([
-            'firstname' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'emergency_contact' => 'required|string|max:255',
             'contact_number' => 'required|string|max:255',
@@ -40,7 +40,7 @@ class AuthController extends Controller
 
             
         ], [
-            'firstname.required' => 'Voornaam is verplicht.',
+            'name.required' => 'Voornaam is verplicht.',
             'lastname.required' => 'Achternaam is verplicht.',
             'email.required' => 'E-mailadres is verplicht.',
             'email.email' => 'Geef een geldig e-mailadres op.',
@@ -54,7 +54,7 @@ class AuthController extends Controller
 
         // Create the user
         User::create([
-            'firstname' => $request->firstname,
+            'name' => $request->name,
             'lastname' => $request->lastname,
             'email' => $request->email,
             'emergency_contact' => $request->emergency_contact,

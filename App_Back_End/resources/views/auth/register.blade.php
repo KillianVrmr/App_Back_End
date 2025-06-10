@@ -14,8 +14,8 @@
                 @enderror    
                 </div>
                 <div>
-                <input name="firstname" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('firstname') is-invalid @enderror" value="{{ old('firstname') }}" placeholder="Voornaam" required>
-                @error('firstname')
+                <input name="name" type="text" class="border-b border-gray-400 focus:outline-none p-2 w-full form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Voornaam" required>
+                @error('name')
                 <div class="invalid-feedback text-red-500">{{ $message }}</div>
                 @enderror 
                 </div>
