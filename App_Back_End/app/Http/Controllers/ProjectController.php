@@ -7,7 +7,6 @@ use App\Models\Projects;
 use App\Models\File;
 use App\Models\Message;
 use Illuminate\Support\Facades\Log;
-use App\Events\MessageSent;
 
 class ProjectController extends Controller
 {
@@ -89,7 +88,8 @@ class ProjectController extends Controller
         ]);
         Log::info('Message created', ['message' => $message]);
     
-        event(new MessageSent($message));
+        // Disabled broadcasting for now since Pusher is not configured
+        // event(new MessageSent($message));
         
         return response()->json(['message' => $message->load('user')]);
     }

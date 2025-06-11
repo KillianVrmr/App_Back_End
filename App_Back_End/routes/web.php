@@ -7,7 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
 use App\Models\Message;
-use App\Models\projects;
+use App\Models\Projects;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,7 +48,7 @@ Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assig
 
 
 Route::get('/projects/{project}/chat', function (Projects $project) {
-    $messages = Message::where('chat_id', $project->id)->orderBy('created_at')->get();
+    $messages = Message::with('user')->where('chat_id', $project->id)->orderBy('created_at')->get();
     return view('projects.chat', compact('project', 'messages'));
 })->name('projects.chat');
 
