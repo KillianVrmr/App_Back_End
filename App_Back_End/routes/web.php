@@ -6,7 +6,9 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ShiftController;
 
+// HOME
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,15 +58,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/availability', [AvailabilityController::class, 'indexData']);
     Route::post('/availability', [AvailabilityController::class, 'store']);
 });
+
+// TIMESHEETS
+Route::middleware('auth')->group(function () {
+    Route::get('/urenindienen', [ShiftController::class, 'index'])->name('timesheet.index');
+    Route::post('/timesheet/submit/{shift}', [ShiftController::class, 'submit'])->name('timesheet.submit');
+});
  
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'showLogoutForm'])->name('logout');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
     });
  
-
-//for testing
-Route::get('/sidebar', function () {
-    return view('components.sidebar');
-});
 
