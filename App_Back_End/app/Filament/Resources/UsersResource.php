@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UsersResource\Pages;
 use App\Filament\Resources\UsersResource\RelationManagers;
-use App\Models\Users;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UsersResource extends Resource
 {
-    protected static ?string $model = Users::class;
+    protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,7 +23,37 @@ class UsersResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('lastname')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('email')
+                    ->required()
+                    ->email()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('password')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('emergency_contact')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('contact_number')
+                    ->required()
+                    ->tel(),
+                Forms\Components\select::make('blood_type')
+                    ->required()
+                    ->options([
+                        'A+' => 'A+',
+                        'A-' => 'A-',
+                        'B+' => 'B+',
+                        'B-' => 'B-',
+                        'AB+' => 'AB+',
+                        'AB-' => 'AB-',
+                        'O+' => 'O+',
+                        'O-' => 'O-',
+                    ]),
             ]);
     }
 
@@ -31,7 +61,13 @@ class UsersResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('lastname')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('emergency_contact'),
+                Tables\Columns\TextColumn::make('contact_number'),
             ])
             ->filters([
                 //

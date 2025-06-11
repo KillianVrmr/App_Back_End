@@ -23,7 +23,15 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('Description')
+                    ->required()
+                    ->maxLength(1200),
+                Forms\Components\TextInput::make('contact')
+                    ->required()
+                    ->email(),
             ]);
     }
 
@@ -31,7 +39,10 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('contact'),
             ])
             ->filters([
                 //

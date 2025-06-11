@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Projects extends Model
+class Project extends Model
 {
+
     protected $fillable = ['name', 'description', 'contact', 'date', 'file_id'];
 
     public function file()
