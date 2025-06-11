@@ -42,6 +42,21 @@ Route::get('/projects/{project}/crew', function (\App\Models\Projects $project) 
 
 Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assignCrew'])->name('projects.assignCrew');
 
+
+
+
+Route::get('/projects/{project}/chat', function (\App\Models\Projects $project) {
+    return view('projects.chat', compact('project'));
+})->name('projects.chat');
+
+Route::post('/projects/{project}/chat', [ProjectController::class, 'storeMessage'])->name('projects.chat.store');
+Route::get('/projects/{project}/chat/messages', [ProjectController::class, 'fetchMessages'])->name('projects.chat.fetch');
+
+
+
+
+
+
 Route::middleware('guest')->group(function() {
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.post');
