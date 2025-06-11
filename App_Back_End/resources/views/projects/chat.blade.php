@@ -57,7 +57,6 @@
         </div>
         <div class="p-16 w-full h-screen">
             <h1 class="font-bold text-3xl text-black">{{$project -> name}} chat</h1>
-            <div id="connection-status" class="mb-4 text-sm">🔴 Disconnected</div>
             <div class="chat-messages" id="chat-messages">
                 @foreach($messages as $message)
                     <div class="message">
@@ -119,10 +118,8 @@
         //     window.Echo.connector.pusher.connection.bind('error', () => {
         //         statusElement.textContent = '❌ Connection Error'; statusElement.className = 'status disconnected';
         //     });
-
-        //     window.Echo.channel('chat').listen('MessageSent', (e) => addMessage(e));
-        // }
-
+            window.Echo.channel('chat').listen('MessageSent', (e) =>{ console.log('Received event:', e);addMessage(e);});
+        
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const content = messageInput.value.trim();

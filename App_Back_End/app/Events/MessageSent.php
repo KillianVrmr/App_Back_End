@@ -22,17 +22,19 @@ class MessageSent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('chat'),
+            new Channel('chat'), 
         ];
     }
 
     public function broadcastWith(): array
     {
-        return [
-            'id' => $this->message->id,
-            'username' => $this->message->username,
-            'content' => $this->message->content,
-            'created_at' => $this->message->created_at->toISOString(),
-        ];
-    }
+    return [
+        'user' => [
+            'firstname' => $this->message->user->firstname ?? 'User',
+            'lastname' => $this->message->user->lastname ?? '',
+        ],
+        'message_text' => $this->message->message_text,
+        'created_at' => $this->message->created_at->toISOString(),
+    ];
+}
 }
