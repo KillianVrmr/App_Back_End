@@ -22,53 +22,86 @@
             </form>
             <script>
 
-const projectId = {{ $project->id }};
-const currentUserId = {{ auth()->id() }};
+                
+ document.addEventListener('DOMContentLoaded', function() {
+        // Set up CSRF token for axios
+        if (window.axios) {
+            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        }
 
-if (window.Echo) {
-    window.Echo.channel(`chat.${projectId}`)
-        .listen('MessageSent', (e) => {
-            // handle event
+        const messagesContainer = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const usernameInput = document.getElementById('username');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send-button');
+        const statusElement = document.getElementById('connection-status');
+
+        // Store username in localStorage
+        const savedUsername = localStorage.getItem('chat-username');
+        if (savedUsername) {
+            usernameInput.value = savedUsername;
+        }
+        usernameInput.addEventListener('input', () => {
+            localStorage.setItem('chat-username', usernameInput.value);
         });
-} else {
-    console.warn('Echo is not loaded!');
-}
 
-function fetchMessages() {
-    fetch(`/projects/${projectId}/chat/messages`)
-        .then(res => res.json())
-        .then(data => {
-            const chat = document.getElementById('chat');
-            chat.innerHTML = '';
-            data.messages.forEach(msg => {
-                const isMe = msg.user_id === currentUserId;
-                chat.innerHTML += `<div style="text-align:${isMe ? 'right' : 'left'};">
-                    <strong>${isMe ? 'Me' : msg.user.lastname}:</strong> ${msg.message_text}
-                    <span style="font-size:0.8em;color:gray;">${msg.created_at}</span>
-                </div>`;
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function addMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message';
+            const time = new Date(message.created_at).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            messageElement.innerHTML = `
+                <div class="message-username">${escapeHtml(message.username)}</div>
+                <div class="message-content">${escapeHtml(message.content)}</div>
+                <div class="message-time">${time}</div>
+            `;
+            messagesContainer.appendChild(messageElement);
+            scrollToBottom();
+        }
+
+        function escapeHtml(unsafe) {
+            return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // WebSocket connection
+        if (window.Echo && window.Echo.connector && window.Echo.connector.pusher) {
+            window.Echo.connector.pusher.connection.bind('connected', () => {
+                statusElement.textContent = '🟢 Connected'; statusElement.className = 'status connected';
             });
+            window.Echo.connector.pusher.connection.bind('disconnected', () => {
+                statusElement.textContent = '🔴 Disconnected'; statusElement.className = 'status disconnected';
+            });
+            window.Echo.connector.pusher.connection.bind('error', () => {
+                statusElement.textContent = '❌ Connection Error'; statusElement.className = 'status disconnected';
+            });
+
+            window.Echo.channel('chat').listen('MessageSent', (e) => addMessage(e));
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = usernameInput.value.trim();
+            const content = messageInput.value.trim();
+            if (!username || !content) return;
+            sendButton.disabled = true; sendButton.textContent = 'Sending...';
+            try {
+                const response = await window.axios.post('/messages', { username, content });
+                addMessage(response.data);
+                messageInput.value = '';
+                messageInput.focus();
+            } catch {
+                alert('Failed to send message.');
+            } finally {
+                sendButton.disabled = false; sendButton.textContent = 'Send';
+            }
         });
-}
 
-document.getElementById('chat-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const message = document.getElementById('message').value;
-    fetch(`/projects/${projectId}/chat`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({ message })
-    })
-    .then(res => res.json())
-    .then(() => {
-        document.getElementById('message').value = '';
-        fetchMessages();
+        scrollToBottom();
+        if (usernameInput.value) messageInput.focus(); else usernameInput.focus();
     });
-});
-
-fetchMessages();
 </script>
         </div>
 </div>

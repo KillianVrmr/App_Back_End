@@ -6,6 +6,8 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
+use App\Models\Message;
+use App\Models\projects;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,7 +36,7 @@ Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.project');
 
-Route::get('/projects/{project}/crew', function (\App\Models\Projects $project) {
+Route::get('/projects/{project}/crew', function (Projects $project) {
     $project->load('users');
     $users = User::all(); 
     return view('projects.crew', compact('project', 'users'));
@@ -45,8 +47,9 @@ Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assig
 
 
 
-Route::get('/projects/{project}/chat', function (\App\Models\Projects $project) {
-    return view('projects.chat', compact('project'));
+Route::get('/projects/{project}/chat', function (Projects $project) {
+    $messages = Message::where('chat_id', $project->id)->orderBy('created_at')->get();
+    return view('projects.chat', compact('project', 'messages'));
 })->name('projects.chat');
 
 Route::post('/projects/{project}/chat', [ProjectController::class, 'storeMessage'])->name('projects.chat.store');
