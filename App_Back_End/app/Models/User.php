@@ -9,6 +9,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Functions;
+use App\Models\Projects;
+use App\Models\Role;
+
 
 class User extends Authenticatable
 {
@@ -27,7 +31,7 @@ class User extends Authenticatable
     
     public function function()
     {
-        return $this->belongsTo(FunctionModel::class, 'function_id');
+        return $this->belongsTo(Functions::class, 'function_id');
     }
     /**
      * The attributes that should be hidden for serialization.
@@ -46,7 +50,7 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'user_project');
+        return $this->belongsToMany(Projects::class, 'user_project');
     }
 
     public function timesheets() 

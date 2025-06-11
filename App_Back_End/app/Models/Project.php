@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Project extends Model
 {
 
-    protected $fillable = ['name', 'description', 'contact', 'date', 'file_id'];
+    protected $fillable = ['name', 'description', 'location', 'end_date', 'file_id', 'contact_person', 'contact_phone'];
+
+    protected $casts = [
+        'end_date' => 'date', // <-- Add this line
+    ];
 
     public function file()
     {
@@ -25,4 +29,12 @@ class Project extends Model
     {
         return $this->BelongsToMany(Timesheet::class);
     }
+
+    public function getFilenameAttribute()
+    {
+        return $this->file ? $this->file->filename : null;
+    }
 }
+
+
+
