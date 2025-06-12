@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Projects;
+use App\Models\Project;
 use App\Models\File;
 class ProjectController extends Controller
 {
@@ -37,7 +37,7 @@ class ProjectController extends Controller
             $validatedData['file_id'] = $fileModel->id;
         }
         // Create and save the new project
-        Projects::create($validatedData);
+        Project::create($validatedData);
 
         // Redirect or respond as needed
         return redirect()->route('create_project')->with('success', 'Project created successfully!');
@@ -47,7 +47,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         
-    $project = Projects::findOrFail($id); // throws 404 if not found
+    $project = Project::findOrFail($id); // throws 404 if not found
 
     return view('projects.project', compact('project'));
     }
@@ -58,7 +58,7 @@ class ProjectController extends Controller
             'user_id' => 'required|exists:users,id',
         ]);
 
-        $project = Projects::findOrFail($projectId);
+        $project = Project::findOrFail($projectId);
         $user = \App\Models\User::findOrFail($request->input('user_id'));
 
         // Attach the user to the project

@@ -21,7 +21,7 @@ Route::post('/projects', [ProjectController::class, 'store'])->name('projects.st
 
 Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
     $location = $request->query('location');
-    $projects = \App\Models\Projects::query();
+    $projects = \App\Models\Project::query();
 
     if ($location) {
         $projects->where('location', 'like', '%' . $location . '%');
@@ -34,7 +34,7 @@ Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.project');
 
-Route::get('/projects/{project}/crew', function (\App\Models\Projects $project) {
+Route::get('/projects/{project}/crew', function (\App\Models\Project $project) {
     $project->load('users');
     $users = User::all(); 
     return view('projects.crew', compact('project', 'users'));
