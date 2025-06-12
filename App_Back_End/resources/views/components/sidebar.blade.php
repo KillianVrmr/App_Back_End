@@ -24,7 +24,10 @@
                             <a href="#" class="block text-white hover:text-green transition-colors py-2">Mijn projecten</a>
                         </li>
                         <li>
-                            <a href="#" class="block text-white hover:text-green transition-colors py-2">Beschikbaarheid</a>
+                            <a href="/beschikbaarheid" class="block text-white hover:text-green transition-colors py-2">Beschikbaarheid</a>
+                        </li>
+                        <li>
+                            <a href="/urenindienen" class="block text-white hover:text-green transition-colors py-2">Uren indienen</a>
                         </li>
                     </ul>
                     
