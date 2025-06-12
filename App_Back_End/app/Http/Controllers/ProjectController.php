@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Projects;
 use App\Models\File;
+use App\Models\Message;
+use Illuminate\Support\Facades\Log;
+use App\Events\MessageSent;
+
 class ProjectController extends Controller
 {
     public function store(Request $request)
@@ -66,5 +70,37 @@ class ProjectController extends Controller
 
         return redirect()->route('projects.crew', ['project' => $projectId])
                          ->with('success', 'Crew member assigned successfully!');
+    }
+
+    public function storeMessage(Request $request, $projectId)
+    {
+        $request->validate(['message' => 'required|string']);
+        Log::info('storeMessage called', [
+        'user_id' => auth()->id(),
+        'chat_id' => $projectId,
+        'message_text' => $request->message,
+    ]);
+        $message = \App\Models\Message::create([
+            'chat_id' => $projectId,
+            'user_id' => auth()->id(),
+            'visible' => true,
+            'message_text' => $request->message,
+            'time_sent' => now(),
+        ]);
+        Log::info('Message created', ['message' => $message]);
+    
+        // Disabled broadcasting for now since Pusher is not configured
+        event(new MessageSent($message));
+        
+        return response()->json(['message' => $message->load('user')]);
+    }
+
+    public function fetchMessages($projectId)
+    {
+        $messages = \App\Models\Message::with('user')
+            ->where('chat_id', $projectId)
+            ->orderBy('created_at')
+            ->get();
+        return response()->json(['messages' => $messages]);
     }
 }

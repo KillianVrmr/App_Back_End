@@ -18,7 +18,6 @@ return new class extends Migration
             $table->dateTime('time_sent');
             $table->boolean('visible');
             $table->unsignedBigInteger('chat_id');
-            $table->unsignedBigInteger('new_column');
             $table->timestamps();
         });
     }
