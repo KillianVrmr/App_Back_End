@@ -6,9 +6,14 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
+
 use App\Models\Message;
 use App\Models\Projects;
 
+use App\Http\Controllers\ShiftController;
+
+
+// HOME
 Route::get('/', function () {
     return view('welcome');
 });
@@ -68,23 +73,22 @@ Route::middleware('guest')->group(function() {
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 
-Route::get('/availability', function () {
-    return view('availability');
+// BESCHIKBAARHEID
+Route::middleware('auth')->group(function () {
+    Route::get('/beschikbaarheid', [AvailabilityController::class, 'indexView']);
+    Route::get('/availability', [AvailabilityController::class, 'indexData']);
+    Route::post('/availability', [AvailabilityController::class, 'store']);
 });
 
-
-Route::get('/availability', [AvailabilityController::class, 'indexView']);
-Route::get('/availability/data', [AvailabilityController::class, 'indexData']);
-Route::post('/availability', [AvailabilityController::class, 'store']);
+// TIMESHEETS
+Route::middleware('auth')->group(function () {
+    Route::get('/urenindienen', [ShiftController::class, 'index'])->name('timesheet.index');
+    Route::post('/timesheet/submit/{shift}', [ShiftController::class, 'submit'])->name('timesheet.submit');
+});
  
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'showLogoutForm'])->name('logout');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
     });
  
-
-//for testing
-Route::get('/sidebar', function () {
-    return view('components.sidebar');
-});
 

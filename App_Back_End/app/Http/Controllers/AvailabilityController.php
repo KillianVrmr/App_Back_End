@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Availability;
+
 
 class AvailabilityController extends Controller
 {
@@ -14,9 +15,19 @@ class AvailabilityController extends Controller
     }
 
     // Return availability data (for FullCalendar)
-    public function indexData()
+    public function indexData(Request $request)
     {
-        return Availability::where('user_id', 1) // Replace later!!
+        $start = $request->query('start');
+        $end = $request->query('end');
+        $userId = Auth::id();
+
+        // Zorg dat start en end gezet zijn, anders fallback
+        if (!$start || !$end) {
+            return response()->json([], 400);
+        }
+
+        $availabilities = Availability::where('user_id', $userId)
+            ->whereBetween('date', [$start, $end])
             ->get()
             ->map(function ($availability) {
                 return [
@@ -26,17 +37,20 @@ class AvailabilityController extends Controller
                     'color' => $availability->available ? '#04b5a9' : '#999',
                 ];
             });
+
+        return response()->json($availabilities);
     }
 
     // Store or update availability
     public function store(Request $request)
     {
+        $userId = Auth::id();
+    
         Availability::updateOrCreate(
-            ['user_id' => 1, 'date' => $request->input('date')], // Replace with auth()->id() if needed
+            ['user_id' =>  $userId, 'date' => $request->input('date')],  
             ['available' => $request->input('available')]
         );
 
         return response()->json(['status' => 'ok']);
     }
 }
-
