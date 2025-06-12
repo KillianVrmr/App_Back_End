@@ -105,7 +105,7 @@
                                 <!-- Indienen knop -->
                                 <button 
                                     type="submit" 
-                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                    class="w-full bg-green hover:bg-green-hover text-white font-medium py-2 px-4 rounded-md transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 >
                                     Uren indienen
                                 </button>
@@ -121,7 +121,7 @@
                         </svg>
                     </div>
                     <h3 class="text-lg font-medium text-gray-900 mb-2">Geen openstaande uren</h3>
-                    <p class="text-gray-500">Je hebt momenteel geen diensten waarvoor je nog uren moet indienen.</p>
+                    <p class="text-gray-500">Er zijn momenteel geen diensten waarvoor je nog uren moet indienen.</p>
                 </div>
             @endif
 
@@ -165,7 +165,8 @@
                     </div>
                 </div>
             @endif
-        </div>
+            <p class="text-white text-sm">Fout gemaakt? Neem contact op met je leidinggevende</p>
+        </div>   
     </div>
 </body>
 </html>

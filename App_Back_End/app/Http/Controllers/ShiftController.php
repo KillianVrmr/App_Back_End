@@ -18,7 +18,6 @@ class ShiftController extends Controller
         $user = Auth::user();
 
         // Get shifts that need timesheet submission
-        // Assuming you have a 'shifts' table with user_id, and a 'timesheets' table
         $pendingShifts = Shift::where('user_id', $user->id)
             ->whereNull('submitted_at')
             ->where('shift_date', '<=', now()) // Only past/current shifts
@@ -26,7 +25,7 @@ class ShiftController extends Controller
             ->orderBy('shift_date', 'desc')
             ->get();
 
-        // Optional: Get recently submitted timesheets
+        // Get recently submitted timesheets
         $recentlySubmitted = Shift::where('user_id', $user->id)
             ->whereNotNull('submitted_at')
             ->with('project')
