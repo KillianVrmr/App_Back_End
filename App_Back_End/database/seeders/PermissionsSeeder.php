@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Permissions; // Ensure you import the Permission model
+use Illuminate\Database\Seeder; // Ensure you import the Permission model
+use Spatie\Permission\Models\Permission;
+
+
 class PermissionsSeeder extends Seeder
 {
     /**
@@ -12,12 +14,14 @@ class PermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        Permissions::insert([
-            ['name' => 'view_projects'],
-            ['name' => 'edit_projects'],
-            ['name' => 'delete_projects'],
-            ['name' => 'view_users'],
-            ['name' => 'assign_roles'],
-        ]);
+        $permissions = [
+            'is_admin',
+            'create_projects',
+            'write_chat',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
     }
 }

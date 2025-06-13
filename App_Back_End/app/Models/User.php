@@ -10,14 +10,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Functions;
-use App\Models\Projects;
+use App\Models\Project;
 use App\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +51,7 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->belongsToMany(Projects::class, 'user_project');
+        return $this->belongsToMany(Project::class, 'user_project');
     }
 
     public function timesheets() 

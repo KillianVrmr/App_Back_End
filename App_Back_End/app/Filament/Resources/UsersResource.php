@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UsersResource\Pages;
 use App\Filament\Resources\UsersResource\RelationManagers;
+use App\Filament\Resources\UsersResource\RelationManagers\UserProjectsRelationManager;
+use App\Filament\Resources\UsersResource\RelationManagers\UserPermissionsRelationManager;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -54,6 +56,17 @@ class UsersResource extends Resource
                         'O+' => 'O+',
                         'O-' => 'O-',
                     ]),
+
+                Forms\Components\CheckboxList::make('permissions')
+                ->label('Permissions')
+                ->options(\Spatie\Permission\Models\Permission::pluck('name', 'id')->toArray())
+                ->columns(1)
+                ->afterStateHydrated(function ($component, $state, $record) {
+                    $component->state($record->permissions->pluck('id')->toArray());
+                })
+                ->afterStateUpdated(function ($state, callable $set, $record) {
+                    $record->syncPermissions($state);
+                }),
             ]);
     }
 
@@ -85,7 +98,8 @@ class UsersResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            UserProjectsRelationManager::class,
+            UserPermissionsRelationManager::class,
         ];
     }
 
