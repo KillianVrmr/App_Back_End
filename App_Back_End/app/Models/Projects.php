@@ -14,8 +14,9 @@ class Projects extends Model
     ];
     public function file()
     {
-        return $this->belongsTo(File::class);
+        return $this->belongsTo(File::class, 'file_id');
     }
+    
     public function getFilenameAttribute()
     {
         return $this->file ? $this->file->filename : null;

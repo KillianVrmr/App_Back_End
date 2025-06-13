@@ -29,9 +29,9 @@
         <ul style="list-style: none; padding: 0; margin: 0;">
             @foreach($projects as $project)
                  <li class="project-card">
-                    @if($project->filename)
+                    @if($project->file_id)
                         <div>
-                            <img src="{{ asset('storage/' . $project->filename) }}" alt="Project Image"
+                            <img src="{{ asset('storage/' . $project->file->path) }}" alt="Project Image"
                             style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: none;">
                         </div>
                     @endif

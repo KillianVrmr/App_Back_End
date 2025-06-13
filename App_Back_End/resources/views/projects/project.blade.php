@@ -3,9 +3,9 @@
         <!-- Left column: Name, Image, Description -->
         <div style="flex: 2;">
             <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem;">{{ $project->name }}</h1>
-            @if($project->filename)
+            @if($project->file_id)
                 <div style="margin-bottom: 1.5rem;">
-                    <img src="{{ asset('storage/' . $project->filename) }}" alt="Project Image" style="width: 100%; max-width: 350px; max-height: 350px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 16px rgba(0,0,0,0.18);">
+                    <img src="{{ asset('storage/' . $project->file->path) }}" alt="Project Image" style="width: 100%; max-width: 350px; max-height: 350px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 16px rgba(0,0,0,0.18);">
                 </div>
             @else
                 <p style="margin-bottom: 1.5rem;">No image available for this project.</p>
