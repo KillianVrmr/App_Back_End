@@ -15,11 +15,61 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         User::insert([
-            ['name' => 'Alice', 'lastname' => 'Smith', 'email' => 'alice@example.com', 'password' => Hash::make('password'), 'function_id' => 1, 'role_id' => 1,'emergency_contact' => 'Bob', 'contact_number' => '1234567890', 'blood_type' => 'A+'],
-            ['name' => 'Bob', 'lastname' => 'Jones', 'email' => 'bob@example.com', 'password' => Hash::make('password'), 'function_id' => 2, 'role_id' => 2, 'emergency_contact' => 'Bob', 'contact_number' => '2345678901', 'blood_type' => 'B+'],
-            ['name' => 'Carol', 'lastname' => 'Taylor', 'email' => 'carol@example.com', 'password' => Hash::make('password'), 'function_id' => 3, 'role_id' => 1, 'emergency_contact' => 'Bob', 'contact_number' => '3456789012', 'blood_type' => 'O-'],
-            ['name' => 'Dave', 'lastname' => 'Brown', 'email' => 'dave@example.com', 'password' => Hash::make('password'), 'function_id' => 1, 'role_id' => 2, 'emergency_contact' => 'Bob', 'contact_number' => '4567890123', 'blood_type' => 'AB+'],
-            ['name' => 'Eve', 'lastname' => 'White', 'email' => 'eve@example.com', 'password' => Hash::make('password'), 'function_id' => 2, 'role_id' => 1, 'emergency_contact' => 'Bob', 'contact_number' => '5678901234', 'blood_type' => 'A-'],
+            [
+                'firstname' => 'Alice',
+                'lastname' => 'Smith',
+                'email' => 'alice@example.com',
+                'password' => Hash::make('password'),
+                'function_id' => 1,
+                'role_id' => 1,
+                'emergency_contact' => 'Jan Peeters',
+                'contact_number' => '0499123456',
+                'blood_type' => 'A+'
+            ],
+            [
+                'firstname' => 'Bob',
+                'lastname' => 'Jones',
+                'email' => 'bob@example.com',
+                'password' => Hash::make('password'),
+                'function_id' => 2,
+                'role_id' => 2,
+                'emergency_contact' => 'Sofie De Bruyn',
+                'contact_number' => '0488123456',
+                'blood_type' => 'B+'
+            ],
+            [
+                'firstname' => 'Carol',
+                'lastname' => 'Taylor',
+                'email' => 'carol@example.com',
+                'password' => Hash::make('password'),
+                'function_id' => 3,
+                'role_id' => 1,
+                'emergency_contact' => 'Tom Janssens',
+                'contact_number' => '0477123456',
+                'blood_type' => 'O-'
+            ],
+            [
+                'firstname' => 'Dave',
+                'lastname' => 'Brown',
+                'email' => 'dave@example.com',
+                'password' => Hash::make('password'),
+                'function_id' => 1,
+                'role_id' => 2,
+                'emergency_contact' => 'Leen Van Damme',
+                'contact_number' => '0466123456',
+                'blood_type' => 'AB+'
+            ],
+            [
+                'firstname' => 'Eve',
+                'lastname' => 'White',
+                'email' => 'eve@example.com',
+                'password' => Hash::make('password'),
+                'function_id' => 2,
+                'role_id' => 1,
+                'emergency_contact' => 'Peter Willems',
+                'contact_number' => '0455123456',
+                'blood_type' => 'A-'
+            ],
         ]);
     }
 }
