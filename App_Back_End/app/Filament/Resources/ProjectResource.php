@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
+use App\Filament\Resources\ProjectResource\RelationManagers\UsersRelationManager;
 use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -29,9 +30,17 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('Description')
                     ->required()
                     ->maxLength(1200),
-                Forms\Components\TextInput::make('contact')
+                Forms\Components\TextInput::make('contact_person')
                     ->required()
                     ->email(),
+                Forms\Components\TextInput::make('contact_phone')
+                    ->required()
+                    ->tel(),
+                Forms\Components\DatePicker::make('end_date')
+                    ->required(),
+                Forms\Components\TextInput::make('file_id')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 
@@ -61,6 +70,7 @@ class ProjectResource extends Resource
     {
         return [
             //
+            UsersRelationManager::class,
         ];
     }
 
