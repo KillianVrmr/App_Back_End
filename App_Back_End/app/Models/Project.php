@@ -33,7 +33,6 @@ class Project extends Model
     {
         return $this->BelongsToMany(Timesheet::class);
     }
-
 }
 
 

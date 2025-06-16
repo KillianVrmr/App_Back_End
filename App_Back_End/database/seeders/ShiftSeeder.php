@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Shift;
 use App\Models\User;
-use App\Models\Projects;
+use App\Models\Project;
 use Carbon\Carbon;
 
 class ShiftSeeder extends Seeder
@@ -14,7 +14,7 @@ class ShiftSeeder extends Seeder
     {
         // Zorg ervoor dat er users en projecten bestaan
         $user = User::first(); // evt. met ->inRandomOrder()->first();
-        $project = Projects::first();
+        $project = Project::first();
 
         if (!$user || !$project) {
             $this->command->warn('⚠️ Geen gebruikers of projecten gevonden. Seeder gestopt.');
