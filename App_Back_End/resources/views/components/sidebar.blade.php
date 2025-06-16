@@ -23,6 +23,9 @@
                         <li>
                             <a href="/create_project" class="block text-white hover:text-green transition-colors py-2">Nieuw project</a>
                         </li>
+                        <li>
+                            <a href="/planning" class="block text-white hover:text-green transition-colors py-2">Mijn planning</a>
+                        </li>
                         <!-- <li>
                             <a href="#" class="block text-white hover:text-green transition-colors py-2">Mijn projecten</a>
                         </li> -->

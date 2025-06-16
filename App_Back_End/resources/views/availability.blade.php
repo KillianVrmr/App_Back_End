@@ -14,7 +14,6 @@
         </div>
         <div class="p-16 w-full h-screen">
             <h1 class="font-bold text-3xl text-white">Beschikbaarheid</h1>
-            <h3 class="font-bold text-white">Welkom {{ auth()->user()->firstname }}</h3>
             <div id="calendar" class="rounded overflow-hidden mt-4 h-[70vh] w-[50vw]"></div>
         </div>
         <div class="h-screen py-24">
