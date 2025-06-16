@@ -70,6 +70,7 @@ class UsersSeeder extends Seeder
                 'contact_number' => '0455123456',
                 'blood_type' => 'A-'
             ],
+
         ]);
     }
 }
