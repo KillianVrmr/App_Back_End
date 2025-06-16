@@ -4,7 +4,10 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84a97fb5f8b00a67e0510e3b74d3e331",
+
+
+    "content-hash": "64079ca3796833dde8bdf0eba65cc8be",
+
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -8735,7 +8738,8 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.18.3",
+
+            "version": "2.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
@@ -8743,8 +8747,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/59a123a3d459c5a23055802237cb317f609867e5",
-                "reference": "59a123a3d459c5a23055802237cb317f609867e5",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/89dabca1490bc77dbcab41c2b20968c7e44bf7c3",
+                "reference": "89dabca1490bc77dbcab41c2b20968c7e44bf7c3",
+
                 "shasum": ""
             },
             "require": {
@@ -8794,7 +8799,9 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.18.3"
+
+                "source": "https://github.com/filp/whoops/tree/2.18.2"
+
             },
             "funding": [
                 {
@@ -8802,7 +8809,9 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-16T00:02:10+00:00"
+
+            "time": "2025-06-11T20:42:19+00:00"
+
         },
         {
             "name": "hamcrest/hamcrest-php",
