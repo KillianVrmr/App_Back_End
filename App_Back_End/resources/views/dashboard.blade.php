@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8' />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @vite(['resources/css/app.css'])
+    <title>dashboard</title>
+  </head>
+
 <style>
 .project-card {
     background: rgba(255,255,255,0.10);
@@ -14,8 +23,12 @@
     background: #3d1b5b;
 }
 </style>
-
-<div style="background: #310e44; color: #fff; min-height: 100vh;">
+<body style="background: #310e44; display:flex;">
+    
+<div style="position: fixed; top: 0; left: 0; height: 100vh;">
+    <x-sidebar></x-sidebar>
+</div>
+<div style="background: #310e44; color: #fff; min-height: 100vh;margin-left: 220px;">
     <div class="project-list" style="margin-left: 10vw; margin-right: 35vw; margin-top: 15vh;">
         <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Alle projecten</h2>
 
@@ -43,7 +56,7 @@
                             {{ $project->description }}
                         </div>
                             <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem;">
-                            <span class="date">End Date: {{ $project->end_date->format('Y-m-d') }}</span>
+                            <span class="date">Deadline: {{ $project->end_date->format('Y-m-d') }}</span>
                             <span class="location">Location: {{ $project->location }}</span>
                             <span class="contact">Contact: {{ $project->contact_person }} ({{ $project->contact_phone }})</span>
                         </div>
@@ -53,3 +66,4 @@
         </ul>
     </div>
 </div>
+</body>
