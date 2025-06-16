@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Http\Controllers\AuthController;
 
 use App\Models\Message;
-use App\Models\Projects;
+use App\Models\Project;
 
 use App\Http\Controllers\ShiftController;
 
@@ -41,7 +41,7 @@ Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.project');
 
-Route::get('/projects/{project}/crew', function (Projects $project) {
+Route::get('/projects/{project}/crew', function (Project $project) {
     $project->load('users');
     $users = User::all(); 
     return view('projects.crew', compact('project', 'users'));
@@ -52,7 +52,7 @@ Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assig
 
 
 
-Route::get('/projects/{project}/chat', function (Projects $project) {
+Route::get('/projects/{project}/chat', function (Project $project) {
     $messages = Message::with('user')->where('chat_id', $project->id)->orderBy('created_at')->get();
     return view('projects.chat', compact('project', 'messages'));
 })->name('projects.chat');
