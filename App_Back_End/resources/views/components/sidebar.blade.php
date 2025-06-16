@@ -15,14 +15,17 @@
                 <div>
                     <ul class="space-y-2">
                         <li>
-                            <a href="#" class="block text-white hover:text-green transition-colors py-2">Home</a>
+                            <a href="/dashboard" class="block text-white hover:text-green transition-colors py-2">Home</a>
                         </li>
                         <li>
-                            <a href="#" class="block text-white hover:text-green transition-colors py-2">Alle projecten</a>
+                            <a href="/dashboard" class="block text-white hover:text-green transition-colors py-2">Alle projecten</a>
                         </li>
                         <li>
+                            <a href="/create_project" class="block text-white hover:text-green transition-colors py-2">Nieuw project</a>
+                        </li>
+                        <!-- <li>
                             <a href="#" class="block text-white hover:text-green transition-colors py-2">Mijn projecten</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="/beschikbaarheid" class="block text-white hover:text-green transition-colors py-2">Beschikbaarheid</a>
                         </li>

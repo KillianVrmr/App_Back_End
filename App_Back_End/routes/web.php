@@ -6,7 +6,12 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
+
+use App\Models\Message;
+use App\Models\Projects;
+
 use App\Http\Controllers\ShiftController;
+
 
 // HOME
 Route::get('/', function () {
@@ -36,13 +41,29 @@ Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.project');
 
-Route::get('/projects/{project}/crew', function (\App\Models\Projects $project) {
+Route::get('/projects/{project}/crew', function (Projects $project) {
     $project->load('users');
     $users = User::all(); 
     return view('projects.crew', compact('project', 'users'));
 })->name('projects.crew');
 
 Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assignCrew'])->name('projects.assignCrew');
+
+
+
+
+Route::get('/projects/{project}/chat', function (Projects $project) {
+    $messages = Message::with('user')->where('chat_id', $project->id)->orderBy('created_at')->get();
+    return view('projects.chat', compact('project', 'messages'));
+})->name('projects.chat');
+
+Route::post('/projects/{project}/chat', [ProjectController::class, 'storeMessage'])->name('projects.chat.store');
+Route::get('/projects/{project}/chat/messages', [ProjectController::class, 'fetchMessages'])->name('projects.chat.fetch');
+
+
+
+
+
 
 Route::middleware('guest')->group(function() {
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
