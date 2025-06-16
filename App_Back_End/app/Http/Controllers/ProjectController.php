@@ -50,7 +50,7 @@ class ProjectController extends Controller
     
     public function show($id)
     {
-        $project = Projects::with('file')->findOrFail($id); // throws 404 if not found
+        $project = Project::with('file')->findOrFail($id); // throws 404 if not found
 
     return view('projects.project', compact('project'));
     }
