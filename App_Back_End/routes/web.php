@@ -15,7 +15,7 @@ use App\Http\Controllers\ShiftController;
 
 // HOME
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 
 
