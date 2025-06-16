@@ -4,7 +4,10 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
+
     "content-hash": "64079ca3796833dde8bdf0eba65cc8be",
+
     "packages": [
         {
             "name": "brick/math",
@@ -7111,6 +7114,7 @@
         },
         {
             "name": "filp/whoops",
+
             "version": "2.18.2",
             "source": {
                 "type": "git",
@@ -7121,6 +7125,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/filp/whoops/zipball/89dabca1490bc77dbcab41c2b20968c7e44bf7c3",
                 "reference": "89dabca1490bc77dbcab41c2b20968c7e44bf7c3",
+
                 "shasum": ""
             },
             "require": {
@@ -7170,7 +7175,9 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
+
                 "source": "https://github.com/filp/whoops/tree/2.18.2"
+
             },
             "funding": [
                 {
@@ -7178,7 +7185,9 @@
                     "type": "github"
                 }
             ],
+
             "time": "2025-06-11T20:42:19+00:00"
+
         },
         {
             "name": "hamcrest/hamcrest-php",
