@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_permissions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('permission_id');
-            $table->timestamps();
+            Schema::table('users', function (Blueprint $table) {
+            $table->renameColumn('firstname', 'name');
+
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('user_permissions');
-    }
+       Schema::table('users', function (Blueprint $table) {
+            $table->renameColumn('name', 'firstname'); 
+    });
+}
 };

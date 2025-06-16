@@ -28,7 +28,7 @@ Route::post('/projects', [ProjectController::class, 'store'])->name('projects.st
 
 Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
     $location = $request->query('location');
-    $projects = \App\Models\Projects::query();
+    $projects = \App\Models\Project::query();
 
     if ($location) {
         $projects->where('location', 'like', '%' . $location . '%');
