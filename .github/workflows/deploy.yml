@@ -36,23 +36,23 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan ssh.hellocode.be >> ~/.ssh/known_hosts
+          ssh-keyscan ssh.productionserver.be >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: |
           rsync -avz --exclude '.git/' \
                      --exclude '.github/' \
                      --exclude 'node_modules/' \
-                     ./App_Back_End/ hellocodebe@ssh.hellocode.be:subsites/fullstack.be/
+                     ./App_Back_End/ productionserverbe@ssh.productionserver.be/www/structuur
 
       - name: Upload .env file
         run: |
-          ssh hellocodebe@ssh.hellocode.be "echo '${{ secrets.ENV_FILE }}' > subsites/fullstack.be/.env"
+          ssh productionserverbe@ssh.productionserver.be "echo '${{ secrets.ENV_FILE }}' > www/structuur"
 
       - name: Post-deployment commands
         run: |
-          ssh hellocodebe@ssh.hellocode.be "
-            cd subsites/fullstack.be && \
+          ssh productionserverbe@ssh.productionserver.be "
+            cd subsites/structuur.be && \
             php artisan optimize:clear
             echo 'Deployment to fullstack.be completed successfully!'
           "
