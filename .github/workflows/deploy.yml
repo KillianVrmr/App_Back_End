@@ -1,0 +1,58 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, bcmath
+
+      - name: Install Composer dependencies
+        run: |
+          cd App_Back_End
+          composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+
+      - name: Install Node dependencies
+        run: |
+          cd App_Back_End
+          npm install
+
+      - name: Setup deploy key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ssh.productionserver.be >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          rsync -avz --exclude '.git/' \
+                     --exclude '.github/' \
+                     --exclude 'node_modules/' \
+                     ./App_Back_End/ productionserverbe@ssh.productionserver.be/www/structuur
+
+      - name: Upload .env file
+        run: |
+          ssh productionserverbe@ssh.productionserver.be "echo '${{ secrets.ENV_FILE }}' > www/structuur"
+
+      - name: Post-deployment commands
+        run: |
+          ssh productionserverbe@ssh.productionserver.be "
+            cd subsites/structuur.be && \
+            php artisan optimize:clear
+            echo 'Deployment to fullstack.be completed successfully!'
+          "
