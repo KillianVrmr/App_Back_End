@@ -43,7 +43,7 @@ jobs:
           rsync -avz --exclude '.git/' \
                      --exclude '.github/' \
                      --exclude 'node_modules/' \
-                     ./App_Back_End/ productionserverbe@ssh.productionserver.be/www/structuur
+                     productionserverbe@ssh.productionserver.be/www/structuur
 
       - name: Upload .env file
         run: |
