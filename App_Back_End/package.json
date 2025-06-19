@@ -15,6 +15,7 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
+        "@fullcalendar/timegrid": "^6.1.17",
         "fullcalendar": "^6.1.17",
         "laravel-echo": "^2.1.5",
         "socket.io-client": "^4.8.1"
