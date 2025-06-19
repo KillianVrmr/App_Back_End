@@ -14,6 +14,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\CheckboxList;
+
 
 class UsersResource extends Resource
 {
@@ -57,16 +59,20 @@ class UsersResource extends Resource
                         'O-' => 'O-',
                     ]),
 
-                Forms\Components\CheckboxList::make('permissions')
-                ->label('Permissions')
-                ->options(\Spatie\Permission\Models\Permission::pluck('name', 'id')->toArray())
-                ->columns(1)
-                ->afterStateHydrated(function ($component, $state, $record) {
-                    $component->state($record->permissions->pluck('id')->toArray());
-                })
-                ->afterStateUpdated(function ($state, callable $set, $record) {
-                    $record->syncPermissions($state);
-                }),
+                CheckboxList::make('permissions')
+    ->label('Permissions')
+    ->relationship('permissions', 'name') // ✅ simpler, automatic binding
+    ->columns(2)
+    //             Forms\Components\CheckboxList::make('permissions')
+    //             ->label('Permissions')
+    //             ->options(\Spatie\Permission\Models\Permission::pluck('name')->toArray())
+    //             ->columns(1)
+    //             ->afterStateHydrated(function ($component, $state, $record) {
+    //                 $component->state($record->permissions->pluck('name')->toArray());
+    //             })
+    //             ->afterStateUpdated(function ($state, callable $set, $record) {
+    //                 $record->syncPermissions($state);
+    //             }),
             ]);
     }
 

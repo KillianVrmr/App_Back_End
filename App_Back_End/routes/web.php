@@ -6,6 +6,7 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
+\Illuminate\Auth\Middleware\Authorize::class;
 
 use App\Models\Message;
 use App\Models\Projects;
@@ -21,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/create_project', function () {
     return view('create_project');
-})->name('create_project');
+})->middleware(['permission:project_create'])->name('create_project');
 
 
 Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
