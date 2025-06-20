@@ -33,11 +33,6 @@ class Project extends Model
     {
         return $this->BelongsToMany(Timesheet::class);
     }
-
-    public function getFilenameAttribute()
-    {
-        return $this->file ? $this->file->filename : null;
-    }
 }
 
 

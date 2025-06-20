@@ -6,17 +6,15 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ProjectController;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
-\Illuminate\Auth\Middleware\Authorize::class;
-
+use App\Http\Controllers\PlanningController;
 use App\Models\Message;
-use App\Models\Projects;
-
+use App\Models\Project;
 use App\Http\Controllers\ShiftController;
 
 
 // HOME
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 
 
@@ -42,7 +40,7 @@ Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
 
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.project');
 
-Route::get('/projects/{project}/crew', function (Projects $project) {
+Route::get('/projects/{project}/crew', function (Project $project) {
     $project->load('users');
     $users = User::all(); 
     return view('projects.crew', compact('project', 'users'));
@@ -53,7 +51,7 @@ Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assig
 
 
 
-Route::get('/projects/{project}/chat', function (Projects $project) {
+Route::get('/projects/{project}/chat', function (Project $project) {
     $messages = Message::with('user')->where('chat_id', $project->id)->orderBy('created_at')->get();
     return view('projects.chat', compact('project', 'messages'));
 })->name('projects.chat');
@@ -87,9 +85,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/timesheet/submit/{shift}', [ShiftController::class, 'submit'])->name('timesheet.submit');
 });
  
+// PLANNING 
+Route::middleware('auth')->group(function () {
+    Route::get('/planning', [PlanningController::class, 'indexView']);
+    Route::get('/shifts', [PlanningController::class, 'indexData']);
+});
+
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'showLogoutForm'])->name('logout');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
     });
  
-
+ 
