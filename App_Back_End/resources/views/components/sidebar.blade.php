@@ -20,9 +20,11 @@
                         <li>
                             <a href="/dashboard" class="block text-white hover:text-green transition-colors py-2">Alle projecten</a>
                         </li>
+                        @can ('project_create')
                         <li>
                             <a href="/create_project" class="block text-white hover:text-green transition-colors py-2">Nieuw project</a>
                         </li>
+                        @endcan
                         <li>
                             <a href="/planning" class="block text-white hover:text-green transition-colors py-2">Mijn planning</a>
                         </li>
