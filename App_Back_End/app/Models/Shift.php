@@ -30,6 +30,12 @@ class Shift extends Model
         'submitted_at',
     ];
 
+    protected $casts = [
+    'planned_start' => 'datetime',
+    'planned_end' => 'datetime',
+    'shift_date' => 'date',
+];
+
     // Relaties
     public function user()
     {
