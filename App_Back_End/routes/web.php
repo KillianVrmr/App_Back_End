@@ -49,7 +49,7 @@ Route::get('/projects/{project}/crew', function (Project $project) {
 
 Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assignCrew'])->name('projects.assignCrew');
 
-
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 
 Route::get('/projects/{project}/chat', function (Project $project) {

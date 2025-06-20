@@ -26,7 +26,7 @@
 <body style="background: #310e44; display:flex;">
     
 <div style="position: fixed; top: 0; left: 0; height: 100vh;">
-    <x-sidebar></x-sidebar>
+    <x-sidebar :projects="$projects"></x-sidebar>
 </div>
 <div style="background: #310e44; color: #fff; min-height: 100vh;margin-left: 220px;">
     <div class="project-list" style="margin-left: 10vw; margin-right: 35vw; margin-top: 15vh;">

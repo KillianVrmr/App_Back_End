@@ -79,8 +79,12 @@
                 <input type="text" id="location" name="location" required>
             </div>
             <div>
-                <label for="filename">Upload File:</label>
-                <input type="file" id="filename" name="filename" accept=".jpg,.png,.JPEG" required>
+                <label for="filename">Upload Main File:</label>
+                <input type="file" id="filename" name="filename"  accept=".jpg,.png,.JPEG" required>
+            </div>
+            <div>
+                <label for="plans">Upload plans:</label>
+                <input type="file" id="plans" name="plans[]" multiple accept=".jpg,.png,.JPEG" required>
             </div>
             <div>
                 <label for="contact_person">Contact Person:</label>
