@@ -13,11 +13,11 @@ class RolesSeeder extends Seeder
     public function run(): void
     {
         Role::insert([
-            ['name' => 1],
-            ['name' => 2],
-            ['name' => 3],
-            ['name' => 4],
-            ['name' => 5],
+            ['name' => 1, 'guard_name' => 'web'],
+            ['name' => 2, 'guard_name' => 'web'],
+            ['name' => 3, 'guard_name' => 'web'],
+            ['name' => 4, 'guard_name' => 'web'],
+            ['name' => 5, 'guard_name' => 'web'],
         ]);
     }
 }
