@@ -3,7 +3,6 @@
 <head>
     <title>Sidebar Test</title>
     @vite('resources/css/app.css')
-    @include('partial', ['projects' => $projects])
 </head>
 <body class="bg-gray-100 font-dmsans; margin-left:450px;">
     <div class="flex">

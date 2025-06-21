@@ -1,0 +1,99 @@
+body {
+            background: #310e44;
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .sidebar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            z-index: 100;
+            background: #222;
+        }
+        .main-content {
+            margin-left: 220px;
+            min-height: 100vh;
+            padding: 3rem 0;
+        }
+        .project-details-wrapper {
+            margin-left: 10vw;
+            margin-right: 10vw;
+            margin-top: 10vh;
+            background: rgba(255,255,255,0.10);
+            border-radius: 12px;
+            box-shadow: 6px 12px 8px 0 rgba(0,0,0,0.45);
+            display: flex;
+            gap: 2.5rem;
+            padding: 2.5rem;
+            max-width: 1200px;
+        }
+        .project-details-left {
+            flex: 2;
+        }
+        .project-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        .project-img {
+            width: 100%;
+            max-width: 350px;
+            max-height: 350px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            margin-bottom: 1.5rem;
+        }
+        .project-desc {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .project-details-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .crew-link {
+            display: inline-block;
+            background: #299390;
+            color: #fff;
+            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            transition: background 0.2s;
+        }
+        .crew-link:hover {
+            background: #2563eb;
+        }
+        .project-meta {
+            background: rgba(0,0,0,0.12);
+            border-radius: 8px;
+            padding: 1.25rem;
+            font-size: 1rem;
+        }
+        .project-meta div {
+            margin-bottom: 0.75rem;
+        }
+        .back-link {
+            display: inline-block;
+            background: #3d1b5b;
+            color: #fff;
+            border-radius: 6px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 2rem;
+            transition: background 0.2s;
+        }
+        .back-link:hover {
+            background: #299390;
+        }

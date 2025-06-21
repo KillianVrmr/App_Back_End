@@ -1,24 +1,40 @@
-<div>
-    <h1>Assign Crew to {{ $project->name }}</h1>
-    <form action="{{ route('projects.assignCrew', $project->id) }}" method="POST">
-        @csrf
-        <div>
-            <label for="user_id">Select Crew Member:</label>
-            <select id="user_id" name="user_id" required>
-                @foreach($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->firstname }} {{ $user->lastname }}</option>
-                @endforeach
-            </select>
-        </div>
-        <button type="submit">Assign Crew Member</button>
-    <div>
-        <label for="crew_member">Current Crew Member:</label>
-        <ul>
-            @forelse($project->users as $user)
-                <li>{{ $user->firstname }} {{ $user->lastname }}</li>
-            @empty
-                <li>No crew members assigned yet.</li>
-            @endforelse
-        </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/css/app.css',resources/css/crew.css'])
+    <title>Crew Members</title>
+</head>
+<body>
+    
+    <div class="sidebar-container">
+        <x-sidebar></x-sidebar>
     </div>
-</div>
+    <div class="main-content">
+        <div class="crew-wrapper">
+            <h1 class="crew-title">Crew Members</h1>
+            <ul class="crew-list">
+                @foreach($crew as $member)
+                    <li class="crew-member-card">
+                        @if($member->avatar)
+                            <img src="{{ asset('storage/' . $member->avatar) }}" alt="Avatar" class="crew-avatar">
+                        @else
+                            <div class="crew-avatar"></div>
+                        @endif
+                        <div class="crew-info">
+                            <div class="crew-name">{{ $member->name }}</div>
+                            <div class="crew-role">{{ $member->role ?? 'Crew Member' }}</div>
+                            <div class="crew-contact">
+                                <strong>Email:</strong> {{ $member->email ?? 'N/A' }}<br>
+                                <strong>Phone:</strong> {{ $member->phone ?? 'N/A' }}
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+            <a href="{{ route('projects.project', $project->id) }}" class="back-link">Back to Project</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -12,7 +12,7 @@ class ProjectNav extends Component
 
     public function __construct()
     {
-        $this->projects = \App\Models\Project::all();
+        $this->projects = Project::all(); 
     }
 
     public function render()
