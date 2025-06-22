@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8' />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/app.css',resources/css/project.css'])
+    @vite(['resources/css/app.css','resources/css/project.css'])
     <title>Project Details</title>
   </head>
 
