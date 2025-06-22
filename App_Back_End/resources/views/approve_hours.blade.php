@@ -11,5 +11,14 @@
     <div>
         <h2>Onderstaande uren moeten nog worden goedgekeurd:</h2>
     </div>
+    @foreach ($pendingShifts as $shift)
+    <div>
+        <p>{{ $shift->user->name }} - {{ $shift->shift_date }}</p>
+        <form method="POST" action="{{ route('shifts.approval.approve', $shift->id) }}">
+            @csrf
+            <button type="submit">Goedkeuren</button>
+        </form>
+    </div>
+@endforeach
 </body>
 </html>

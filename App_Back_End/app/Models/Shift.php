@@ -20,6 +20,7 @@ class Shift extends Model
         'actual_break',
         'notes',
         'submitted_at',
+        'approved_at',
     ];
 
     protected $dates = [
@@ -31,10 +32,14 @@ class Shift extends Model
     ];
 
     protected $casts = [
-    'planned_start' => 'datetime',
-    'planned_end' => 'datetime',
-    'shift_date' => 'date',
-];
+        'planned_start' => 'datetime',
+        'planned_end' => 'datetime',
+        'shift_date' => 'date',
+        'approved_at' => 'datetime',
+        'submitted_at' => 'datetime',
+        'actual_start' => 'datetime',
+        'actual_end' => 'datetime',
+    ];
 
     // Relaties
     public function user()
