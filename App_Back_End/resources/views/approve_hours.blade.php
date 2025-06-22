@@ -19,7 +19,7 @@
         @else
         <div class="space-y-4">
             @foreach ($pendingShifts as $shift)
-            <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+            <div class="bg-white rounded-lg p-6 mt-4 shadow-sm border border-gray-200">
                 <div class="mb-4">
                     <h2 class="text-lg font-semibold text-gray-900">{{ $shift->user->name }} {{ $shift->user->lastname }}</h2>
                     <p class="text-sm text-gray-500">{{ $shift->shift_date }}</p>
