@@ -11,7 +11,7 @@
     <x-sidebar />
 
     <div class="flex-1 p-16">
-    <h1 class="font-bold text-3xl text-white">Uren goedkeuren</h1>
+        <h1 class="font-bold text-3xl text-white">Uren goedkeuren</h1>
         @if ($pendingShifts->isEmpty())
         <div class="bg-white rounded-lg p-6 shadow-sm">
             <p class="text-gray-600">Geen uren om goed te keuren.</p>
@@ -24,7 +24,7 @@
                     <h2 class="text-lg font-semibold text-gray-900">{{ $shift->user->name }} {{ $shift->user->lastname }}</h2>
                     <p class="text-sm text-gray-500">{{ $shift->shift_date }}</p>
                 </div>
-                
+
                 @if($shift->notes)
                 <div class="mb-4">
                     <p class="text-sm text-gray-600">
@@ -44,12 +44,20 @@
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('shifts.approve', $shift->id) }}">
-                    @csrf
-                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                        Goedkeuren
-                    </button>
-                </form>
+                <div class="flex">
+                    <form method="POST" action="{{ route('shifts.approve', $shift->id) }}">
+                        @csrf
+                        <button type="submit" class="bg-green hover:bg-green-700 text-white px-4 py-2 mr-2 rounded-md text-sm font-medium transition-colors">
+                            Goedkeuren
+                        </button>
+                    </form>
+                    <form method="POST" action="" class="inline">
+                        @csrf
+                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                            Aanpassen
+                        </button>
+                    </form>
+                </div>
             </div>
             @endforeach
         </div>
