@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApproveHoursController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AvailabilityController;
@@ -92,9 +93,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/shifts', [PlanningController::class, 'indexData']);
 });
 
+// UREN GOEDKEUREN
+Route::middleware('auth')->group(function () {
+    Route::get('/planning', [ApproveHoursController::class, 'indexView']);
+    Route::get('/shifts', [ApproveHoursController::class, 'indexData']);
+});
+
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'showLogoutForm'])->name('logout');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
     });
  
- 
+  
