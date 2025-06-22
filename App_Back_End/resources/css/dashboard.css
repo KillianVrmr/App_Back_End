@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+body {
+            background: #310e44;
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .sidebar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            z-index: 100;
+            background: #222;
+        }
+        .main-content {
+            margin-left: 220px;
+            min-height: 100vh;
+            padding: 3rem 0;
+        }
+        .project-list {
+            margin-left: 50px;
+            margin-right: 35vw;
+            margin-top: 5vh;
+        }
+        .project-card {
+            background: rgba(255,255,255,0.10);
+            border-radius: 8px;
+            margin-bottom: 2.5rem;
+            padding: 0.75rem;
+            box-shadow: 6px 12px 8px 0 rgba(0,0,0,0.45);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s;
+        }
+        .project-card:hover {
+            background: #3d1b5b;
+        }
+        .project-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: none;
+        }
+        .project-info {
+            flex: 1;
+        }
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+        .project-desc {
+            margin: 0.25rem 0 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }

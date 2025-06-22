@@ -16,8 +16,10 @@ class PermissionsSeeder extends Seeder
     {
         $permissions = [
             'is_admin',
-            'create_projects',
-            'write_chat',
+            'project_create',
+            'project_edit',
+            'approve_timesheets',
+            'assign_crew',
         ];
 
         foreach ($permissions as $permission) {

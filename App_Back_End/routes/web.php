@@ -10,7 +10,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlanningController;
 use App\Models\Message;
 use App\Models\Project;
-
 use App\Http\Controllers\ShiftController;
 
 
@@ -22,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/create_project', function () {
     return view('create_project');
-})->name('create_project');
+})->middleware(['permission:project_create'])->name('create_project');
 
 
 Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
@@ -50,7 +49,7 @@ Route::get('/projects/{project}/crew', function (Project $project) {
 
 Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assignCrew'])->name('projects.assignCrew');
 
-
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 
 Route::get('/projects/{project}/chat', function (Project $project) {
