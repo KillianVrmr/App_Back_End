@@ -45,6 +45,7 @@
                     <!-- Chats Section -->
                     <div class="mb-4">
                         <h3 class="text-white font-medium mb-3">Chats</h3>
+                        <x-sidebar_chat></x-sidebar_chat>
                     </div>
                 </div>
 

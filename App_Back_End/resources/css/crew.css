@@ -1,0 +1,96 @@
+body {
+            background: #310e44;
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .sidebar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            z-index: 100;
+            background: #222;
+        }
+        .main-content {
+            margin-left: 220px;
+            min-height: 100vh;
+            padding: 3rem 0;
+        }
+        .crew-wrapper {
+            margin-left: 10vw;
+            margin-right: 10vw;
+            margin-top: 10vh;
+            background: rgba(255,255,255,0.10);
+            border-radius: 12px;
+            box-shadow: 6px 12px 8px 0 rgba(0,0,0,0.45);
+            padding: 2.5rem;
+            max-width: 1200px;
+        }
+        .crew-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        .crew-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .crew-member-card {
+            background: rgba(255,255,255,0.10);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 6px 12px 8px 0 rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: background 0.2s;
+        }
+        .crew-member-card:hover {
+            background: #3d1b5b;
+        }
+        .crew-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #444;
+            border: 2px solid #299390;
+        }
+        .crew-info {
+            flex: 1;
+        }
+        .crew-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .crew-role {
+            font-size: 1rem;
+            color: #b5e3e0;
+            margin-bottom: 0.5rem;
+        }
+        .crew-contact {
+            font-size: 0.95rem;
+            color: #fff;
+        }
+        .back-link {
+            display: inline-block;
+            background: #3d1b5b;
+            color: #fff;
+            border-radius: 6px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 2rem;
+            transition: background 0.2s;
+        }
+        .back-link:hover {
+            background: #299390;
+        }

@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Sidebar extends Component
 {
+
+     public $projects;
     /**
      * Create a new component instance.
      */
