@@ -58,14 +58,13 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-deeppurple">
 <div>
     <div class="flex">
-        <div class="sidebar-container">
             <x-sidebar></x-sidebar>
-        </div>
+       
         <div class="p-16 w-full h-screen">
-            <h1 class="font-bold text-3xl text-black">{{$project -> name}} chat</h1>
+            <h1 class="font-bold text-3xl text-white">{{$project -> name}} chat</h1>
             <div class="chat-messages" id="chat-messages">
                 @foreach($messages as $message)
                     <div class="message">
@@ -76,7 +75,7 @@
                 @endforeach
             </div>
             <form id="chat-form" class="mt-4">
-                <input type="text" id="message" name="message" placeholder="Type your message..." class="w-full p-2 rounded border" required>
+                <input type="text" id="message" name="message" placeholder="Type your message..." class="w-full p-2 rounded border text-white" required>
                 <button type="submit" id="send-button" class="bg-blue-500 text-white p-2 rounded mt-2">Send</button>
             </form>
             <script>
