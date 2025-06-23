@@ -44,7 +44,7 @@ To generate the REVERB_APP_KEY, REVERP_APP_SECRET and REVERB_APP_ID run the foll
 'APP_ID' => Str::uuid()->toString(),
 'APP_KEY' => Str::random(20),
 'APP_SECRET' => Str::random(32),
-
+```
 ### 4. Generate an application key
 ```bash
 php artisan key:generate
