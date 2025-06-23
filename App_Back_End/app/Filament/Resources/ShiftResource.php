@@ -23,8 +23,9 @@ class ShiftResource extends Resource
     {
         return $form
            ->schema([
-            Forms\Components\Select::make('user_id')
-                ->relationship('user', 'name')
+            Forms\Components\Select::make('users')
+                ->multiple()
+                ->relationship('users', 'name')
                 ->label('Arbeider')
                 ->required(),
 
@@ -58,11 +59,9 @@ class ShiftResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
+                Tables\Columns\BadgeColumn::make('users.name')
                     ->label('Arbeiders')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('project.name')
-                    ->label('Project')
+                    ->separator(', ')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('shift_date'),
                 Tables\Columns\TextColumn::make('planned_start'),

@@ -19,6 +19,11 @@ class PermissionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false; // or false to hide
+    }
+
     public static function form(Form $form): Form
     {
         return $form
