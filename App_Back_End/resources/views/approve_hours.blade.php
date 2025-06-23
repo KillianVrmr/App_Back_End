@@ -61,7 +61,7 @@
                 <button type="button" onclick="document.getElementById('editModal-{{ $shift->id }}').classList.add('hidden')" 
                     class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
 
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Opslaan</button>
+                <button type="submit" class="bg-green hover:bg-green-hover text-white px-4 py-2 rounded">Opslaan</button>
             </div>
         </form>
     </div>
@@ -71,7 +71,7 @@
                 <div class="flex">
                     <form method="POST" action="{{ route('shifts.approve', $shift->id) }}">
                         @csrf
-                        <button type="submit" class="bg-green hover:bg-green-700 text-white px-4 py-2 mr-2 rounded-md text-sm font-medium transition-colors">
+                        <button type="submit" class="bg-green hover:bg-green-hover text-white px-4 py-2 mr-2 rounded-md text-sm font-medium transition-colors">
                             Goedkeuren
                         </button>
                     </form>

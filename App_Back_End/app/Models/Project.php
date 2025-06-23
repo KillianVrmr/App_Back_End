@@ -19,21 +19,30 @@ class Project extends Model
     {
         return $this->belongsTo(File::class, 'file_id');
     }
-    
+
     public function getFilenameAttribute()
     {
         return $this->file ? $this->file->filename : null;
+    }
+    public function getImageUrlAttribute()
+    {
+        if ($this->file && $this->file->path) {
+            $fullPath = public_path('storage/' . $this->file->path);
+
+            if (file_exists($fullPath)) {
+                return asset('storage/' . $this->file->path);
+            }
+        }
+
+        return asset('images/fallback.jpg');
     }
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_project');
     }
 
-    public function timesheets() 
+    public function timesheets()
     {
         return $this->BelongsToMany(Timesheet::class);
     }
 }
-
-
-

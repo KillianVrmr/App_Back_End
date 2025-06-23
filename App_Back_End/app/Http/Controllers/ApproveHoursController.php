@@ -7,27 +7,34 @@ use App\Models\Shift;
 
 class ApproveHoursController extends Controller
 {
-    // Return the page
-    public function indexView()
+    // Toon alle pending shifts van de ingelogde user
+    public function indexView(Request $request)
     {
-        $pendingShifts = Shift::whereNotNull('submitted_at')
+        $user = $request->user();
+
+        $pendingShifts = $user->shifts()
+            ->whereNotNull('submitted_at')
             ->whereNull('approved_at')
+            ->orderBy('shift_date', 'desc')
             ->get();
 
         return view('approve_hours', compact('pendingShifts'));
     }
 
-    public function indexData() {}
-
-    public function approve($shiftId)
+    // Shift goedkeuren, alleen als deze aan de user gelinkt is
+    public function approve(Request $request, $shiftId)
     {
-        $shift = Shift::findOrFail($shiftId);
+        $user = $request->user();
+
+        $shift = $user->shifts()->where('shift_id', $shiftId)->firstOrFail();
+
         $shift->approved_at = now();
         $shift->save();
 
         return redirect()->route('approve_hours')->with('success', 'Shift goedgekeurd!');
     }
 
+    // Shift uren aanpassen, alleen als deze aan de user gelinkt is
     public function update(Request $request, $shiftId)
     {
         $request->validate([
@@ -35,7 +42,10 @@ class ApproveHoursController extends Controller
             'actual_end' => 'required|date|after:actual_start',
         ]);
 
-        $shift = Shift::findOrFail($shiftId);
+        $user = $request->user();
+
+        $shift = $user->shifts()->where('shift_id', $shiftId)->firstOrFail();
+
         $shift->actual_start = $request->input('actual_start');
         $shift->actual_end = $request->input('actual_end');
         $shift->save();

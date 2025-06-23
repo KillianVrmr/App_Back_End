@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shift;
+use App\Models\User;
 use Carbon\Carbon;
 
 class ShiftController extends Controller
@@ -18,15 +19,15 @@ class ShiftController extends Controller
         $user = Auth::user();
 
         // Get shifts that need timesheet submission
-        $pendingShifts = Shift::where('user_id', $user->id)
+        $pendingShifts = $user->shifts()
             ->whereNull('submitted_at')
-            ->where('shift_date', '<=', now()) // Only past/current shifts
-            ->with('project') // Eager load project relationship
+            ->where('shift_date', '<=', now())
+            ->with('project')
             ->orderBy('shift_date', 'desc')
             ->get();
 
         // Get recently submitted timesheets
-        $recentlySubmitted = Shift::where('user_id', $user->id)
+        $recentlySubmitted = $user->shifts()
             ->whereNotNull('submitted_at')
             ->with('project')
             ->orderBy('submitted_at', 'desc')

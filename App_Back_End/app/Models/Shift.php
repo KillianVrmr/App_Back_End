@@ -44,7 +44,8 @@ class Shift extends Model
     // Relaties
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'shift_user');
+
     }
 
     public function project()
