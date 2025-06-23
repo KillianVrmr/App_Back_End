@@ -7,7 +7,7 @@
     <title>Beschikbaarheid</title>
   </head>
 
-  <body class="bg-deeppurple">
+  <body class="bg-deeppurple font-dmsans">
     <div class="flex">
         <div>
             <x-sidebar></x-sidebar>

@@ -9,14 +9,14 @@
         $projects = $projects ?? \App\Models\Project::all();
     @endphp
     <div class="flex">
-        <div class="w-64 h-screen bg-deepblue flex flex-col">
+        <div class="w-64 bg-deepblue flex flex-col">
             
-            <nav class="flex-1 flex flex-col justify-between px-4 py-6">
+            <nav class="flex flex-col justify-between p-2">
                 <div>
-                    <ul class="space-y-2">
+                    <ul class="space-y-1">
                         @foreach($projects as $project)
                             <li>
-                                <a href="{{ route('projects.chat', $project->id) }}" class="block text-white hover:text-green transition-colors py-2">
+                                <a href="{{ route('projects.chat', $project->id) }}" class="block text-white hover:text-green transition-colors py-1">
                                     {{ $project->name }}
                                 </a>
                             </li>
@@ -25,7 +25,7 @@
                     </ul>
                     
                     <!-- Divider -->
-                    <div class="border-t border-white/20 my-6"></div>
+                    <div class="border-t border-white/20 my-2"></div>
                     
                 </div>
 
