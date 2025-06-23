@@ -8,9 +8,11 @@
 
 @theme {
     --color-deepblue: rgb(22, 21, 52);
+    --color-deeppurple: rgb(36, 34, 87);
     --color-seablue: rgb(57, 57, 171);
     --color-purple: rgb(111, 71, 189);
     --color-green: rgb(4, 181, 169);
+    --color-green-hover: rgb(85, 153, 122);
 
     --font-dmsans: DM Sans, sans-serif;
   }

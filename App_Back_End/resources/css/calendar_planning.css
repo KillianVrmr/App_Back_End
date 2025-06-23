@@ -1,0 +1,210 @@
+/* FullCalendar Custom Styling */
+@import 'tailwindcss';
+
+/* Main calendar container */
+.fc {
+    background: white;
+    border-radius: 0.5rem; /* rounded-lg equivalent */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+    overflow: hidden;
+    font-family: inherit;
+}
+
+/* Calendar header */
+.fc-header-toolbar {
+    background: white;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb; /* gray-200 */
+}
+
+/* Header title */
+.fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827; /* gray-900 */
+}
+
+/* Navigation buttons */
+.fc-button-primary {
+    background-color: #10b981 !important; /* green-500 */
+    border-color: #10b981 !important;
+    color: white !important;
+    border-radius: 0.375rem; /* rounded-md */
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: none !important;
+}
+
+.fc-button-primary:hover {
+    background-color: #059669 !important; /* green-600 */
+    border-color: #059669 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+}
+
+.fc-button-primary:active {
+    background-color: #047857 !important; /* green-700 */
+    border-color: #047857 !important;
+    transform: translateY(0);
+}
+
+.fc-button-primary:focus {
+    box-shadow: 0 0 0 3px rgb(16 185 129 / 0.3) !important; /* green focus ring */
+}
+
+/* Disabled buttons */
+.fc-button-primary:disabled {
+    background-color: #d1d5db !important; /* gray-300 */
+    border-color: #d1d5db !important;
+    color: #6b7280 !important; /* gray-500 */
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Calendar grid */
+.fc-scrollgrid {
+    border: none;
+}
+
+/* Day headers */
+.fc-col-header {
+    background-color: #f9fafb; /* gray-50 */
+    border-bottom: 1px solid #e5e7eb; /* gray-200 */
+}
+
+.fc-col-header-cell {
+    padding: 0.75rem 0.5rem;
+    font-weight: 600;
+    color: #374151; /* gray-700 */
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+/* Day cells */
+.fc-daygrid-day {
+    background: white;
+    border-right: 1px solid #f3f4f6; /* gray-100 */
+    border-bottom: 1px solid #f3f4f6;
+    min-height: 100px;
+}
+
+/* Day numbers */
+.fc-daygrid-day-number {
+    padding: 0.5rem;
+    font-weight: 500;
+    color: #374151; /* gray-700 */
+    text-decoration: none;
+}
+
+/* Today's cell */
+.fc-day-today {
+    background-color: #f0fdf4 !important; /* green-50 */
+}
+
+.fc-day-today .fc-daygrid-day-number {
+    background-color: #10b981; /* green-500 */
+    color: white;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Other month days */
+.fc-day-other .fc-daygrid-day-number {
+    color: #9ca3af; /* gray-400 */
+}
+
+/* Selectable days hover */
+.fc-daygrid-day.fc-day-selectable:hover {
+    background-color: #f0fdf4; /* green-50 */
+    cursor: pointer;
+}
+
+/* Selected range */
+.fc-highlight {
+    background-color: #dcfce7 !important; /* green-100 */
+}
+
+/* Events */
+.fc-event {
+    background-color: #10b981; /* green-500 */
+    border-color: #10b981;
+    border-radius: 0.25rem; /* rounded */
+    padding: 0.125rem 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.fc-event:hover {
+    background-color: #059669; /* green-600 */
+    border-color: #059669;
+}
+
+/* Event title */
+.fc-event-title {
+    color: white;
+}
+
+/* More events link */
+.fc-more-link {
+    color: #10b981; /* green-500 */
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.fc-more-link:hover {
+    color: #059669; /* green-600 */
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .fc-header-toolbar {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .fc-toolbar-title {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+    
+    .fc-button-group {
+        justify-content: center;
+    }
+    
+    .fc-daygrid-day {
+        min-height: 80px;
+    }
+}
+
+/* Remove default focus outlines and add custom ones */
+.fc-button:focus {
+    outline: none;
+}
+
+/* Scrollbar styling for webkit browsers */
+.fc-scroller::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.fc-scroller::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.fc-scroller::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.fc-scroller::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
