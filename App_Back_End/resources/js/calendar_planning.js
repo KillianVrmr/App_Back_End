@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         selectable: false,
         editable: false, 
         scrollTime: '07:00:00',   
-        events: '/events',  
+        events: '/planning/shifts',  
 
         eventDidMount: function (info) {
         const users = info.event.extendedProps.users

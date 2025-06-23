@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
 // PLANNING 
 Route::middleware('auth')->group(function () {
     Route::get('/planning', [PlanningController::class, 'indexView']);
-    Route::get('/shifts', [PlanningController::class, 'indexData']);
+    Route::get('/planning/shifts', [PlanningController::class, 'indexData']);
 });
 
 // UREN GOEDKEUREN
