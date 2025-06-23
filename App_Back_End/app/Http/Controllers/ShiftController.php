@@ -11,26 +11,26 @@ use Carbon\Carbon;
 class ShiftController extends Controller
 {
     /**
-     * Display the timesheet page with pending shifts
+     * Toon het uren-indienen overzicht
      */
     public function index()
-    {
-        // Get the authenticated user
+    {   
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // Get shifts that need timesheet submission
+        // Shifts waarvoor de user gekoppeld is, datum is in het verleden, en nog niet ingediend
         $pendingShifts = $user->shifts()
-            ->whereNull('submitted_at')
             ->where('shift_date', '<=', now())
+            ->wherePivotNull('submitted_at')
             ->with('project')
             ->orderBy('shift_date', 'desc')
             ->get();
 
-        // Get recently submitted timesheets
+        // Shifts die al ingediend zijn door deze user
         $recentlySubmitted = $user->shifts()
-            ->whereNotNull('submitted_at')
+            ->wherePivotNotNull('submitted_at')
             ->with('project')
-            ->orderBy('submitted_at', 'desc')
+            ->orderByPivot('submitted_at', 'desc')
             ->limit(10)
             ->get();
 
@@ -38,7 +38,7 @@ class ShiftController extends Controller
     }
 
     /**
-     * Submit timesheet for a specific shift
+     * Verwerk het indienen van uren op een shift
      */
     public function submit(Request $request, $shiftId)
     {
@@ -49,20 +49,22 @@ class ShiftController extends Controller
             'notes' => 'nullable|string|max:1000',
         ]);
 
-        $shift = Shift::where('id', $shiftId)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
 
-        if ($shift->submitted_at) {
+        // Haal de shift op waar de user aan gekoppeld is
+        $shift = $user->shifts()->where('shifts.id', $shiftId)->firstOrFail();
+
+        if ($shift->pivot->submitted_at) {
             return redirect()->back()->with('error', 'Uren zijn al ingediend voor deze dienst.');
         }
 
-        $shiftDate = \Carbon\Carbon::parse($shift->shift_date)->format('Y-m-d');
-
+        $shiftDate = Carbon::parse($shift->shift_date)->format('Y-m-d');
         $actualStart = Carbon::parse("$shiftDate {$request->actual_start}");
         $actualEnd = Carbon::parse("$shiftDate {$request->actual_end}");
 
-        $shift->update([
+        // Update de pivot-tabel (shift_user) met de ingediende uren
+        $user->shifts()->updateExistingPivot($shiftId, [
             'actual_start' => $actualStart,
             'actual_end' => $actualEnd,
             'actual_break' => $request->actual_break ?? 0,
