@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Functions;
 use App\Models\Project;
 use App\Models\Role;
+
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -57,6 +58,10 @@ class User extends Authenticatable
     public function timesheets() 
     {
         return $this->BelongsToMany(Timesheet::class);
+    }
+    public function shifts()
+    {
+        return $this->belongsToMany(Shift::class, 'shift_user', 'user_id', 'shift_id');
     }
     /**
      * Get the attributes that should be cast.
