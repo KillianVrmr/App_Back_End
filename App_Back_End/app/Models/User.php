@@ -59,9 +59,11 @@ class User extends Authenticatable
     {
         return $this->BelongsToMany(Timesheet::class);
     }
+
     public function shifts()
     {
         return $this->belongsToMany(Shift::class, 'shift_user', 'user_id', 'shift_id');
+
     }
     /**
      * Get the attributes that should be cast.

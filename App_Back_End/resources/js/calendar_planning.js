@@ -16,11 +16,20 @@ document.addEventListener('DOMContentLoaded', function () {
         selectable: false,
         editable: false, 
         scrollTime: '07:00:00',   
-        events: '/shifts',  
+        events: '/events',  
+
+        eventDidMount: function (info) {
+        const users = info.event.extendedProps.users
+        if (users) {
+            info.el.title = 'Arbeiders: ' + users
+        }
+    }
     })
 
     calendar.render()
+    
 })
+
 
 
 

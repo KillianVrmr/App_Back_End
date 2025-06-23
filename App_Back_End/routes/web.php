@@ -89,7 +89,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // UREN GOEDKEUREN
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'permission:approve_timesheets')->group(function () {
     Route::get('/urengoedkeuren', [ApproveHoursController::class, 'indexView'])->name('approve_hours');
     Route::get('/shifts', [ApproveHoursController::class, 'indexData']);
     Route::post('/shifts/{shiftId}/approve', [ApproveHoursController::class, 'approve'])->name('shifts.approve');
