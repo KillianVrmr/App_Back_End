@@ -22,7 +22,7 @@
             <div class="bg-white rounded-lg p-6 mt-4 shadow-sm border border-gray-200">
                 <div class="mb-4">
                     <h2 class="text-lg font-semibold text-gray-900">{{ $shift->user->name }} {{ $shift->user->lastname }}</h2>
-                    <p class="text-sm text-gray-500">{{ $shift->shift_date }}</p>
+                    <p class="text-sm text-gray-500">{{ $shift->shift_date->format('d/m/Y') }}</p>
                 </div>
 
                 @if($shift->notes)
@@ -36,11 +36,11 @@
                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                     <div>
                         <h3 class="font-medium text-gray-900 mb-1">Geplande shift</h3>
-                        <p class="text-sm text-gray-600">{{ $shift->planned_start}} - {{$shift->planned_end}}</p>
+                        <p class="text-sm text-gray-600">{{ $shift->planned_start->format('H:i')}} - {{$shift->planned_end->format('H:i')}}</p>
                     </div>
                     <div>
                         <h3 class="font-medium text-gray-900 mb-1">Opgegeven uren</h3>
-                        <p class="text-sm text-gray-600">{{ $shift->actual_start}} - {{$shift->actual_end}}</p>
+                        <p class="text-sm text-gray-600">{{ $shift->actual_start->format('H:i')}} - {{$shift->actual_end->format('H:i')}}</p>
                     </div>
                 </div>
 
