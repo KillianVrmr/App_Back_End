@@ -13,9 +13,12 @@ class Planner extends Page
 
     public function getCalendarEvents(): array
     {
-    return Shift::with(['user', 'project'])->get()->map(function ($shift) {
+    return Shift::with(['users', 'project'])->get()->map(function ($shift) {
         return [
-            'title' => $shift->user->name . ' → ' . $shift->project->name,
+            'title' => $shift->project->name,
+                'extendedProps' => [
+                'users' => $shift->users->pluck('name')->join(', ')
+],
             'start' => $shift->planned_start->format('Y-m-d\TH:i:s'),
             'end' => $shift->planned_end?->format('Y-m-d\TH:i:s'),
         ];

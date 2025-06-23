@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Shift extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'project_id',
         'planned_start',
         'planned_end',
@@ -37,9 +37,9 @@ class Shift extends Model
 ];
 
     // Relaties
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function project()

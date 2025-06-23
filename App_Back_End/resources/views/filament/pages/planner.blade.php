@@ -10,6 +10,13 @@
                     initialView: 'dayGridMonth',
                     events: @json($this->getCalendarEvents()),
                     // add your other FullCalendar options here
+
+                    eventDidMount: function (info) {
+                const users = info.event.extendedProps.users;
+                if (users) {
+                    info.el.setAttribute('title', 'Arbeiders: ' + users);
+                }
+            }
                 });
                 calendar.render();
             });
