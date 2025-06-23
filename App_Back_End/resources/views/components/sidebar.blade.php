@@ -15,9 +15,6 @@
                 <div>
                     <ul class="space-y-2">
                         <li>
-                            <a href="/dashboard" class="block text-white hover:text-green transition-colors py-2">Home</a>
-                        </li>
-                        <li>
                             <a href="/dashboard" class="block text-white hover:text-green transition-colors py-2">Alle projecten</a>
                         </li>
                         @can ('project_create')
