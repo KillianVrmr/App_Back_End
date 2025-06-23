@@ -33,9 +33,6 @@
                     <label for="filename">Upload File:</label>
                     <input type="file" id="filename" name="filename" accept=".jpg,.png,.jpeg" required>
 
-                    <label for="plans">Upload Plans (multiple):</label>
-                    <input type="file" id="plans" name="plans[]" multiple accept=".jpg,.png,.jpeg,.pdf">
-
                     <label for="contact_person">Contact Person:</label>
                     <input type="text" id="contact_person" name="contact_person" required>
 
