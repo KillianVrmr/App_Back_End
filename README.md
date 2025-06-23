@@ -27,9 +27,9 @@ Add the following to your .env to configure the chat
 BROADCAST_CONNECTION=reverb
 BROADCAST_DRIVER=reverb
 
-REVERB_APP_ID=898073
-REVERB_APP_KEY=ejqqmqighfkpzjg3rpmp
-REVERB_APP_SECRET=wyn03duy7wkjdpchztyu
+REVERB_APP_ID=
+REVERB_APP_KEY=
+REVERB_APP_SECRET=
 REVERB_HOST="localhost"
 REVERB_PORT=8080
 REVERB_SCHEME=http
@@ -39,6 +39,11 @@ VITE_REVERB_HOST="${REVERB_HOST}"
 VITE_REVERB_PORT="${REVERB_PORT}"
 VITE_REVERB_SCHEME="${REVERB_SCHEME}"
 ```
+To generate the REVERB_APP_KEY, REVERP_APP_SECRET and REVERB_APP_ID run the following commands and copy those values into your .env:
+```
+'APP_ID' => Str::uuid()->toString(),
+'APP_KEY' => Str::random(20),
+'APP_SECRET' => Str::random(32),
 
 ### 4. Generate an application key
 ```bash
