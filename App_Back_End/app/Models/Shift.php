@@ -43,10 +43,18 @@ class Shift extends Model
 
     // Relaties
     public function users()
-    {
-        return $this->belongsToMany(User::class, 'shift_user');
-
-    }
+{
+    return $this->belongsToMany(User::class, 'shift_user')
+        ->withPivot([
+            'actual_start', 
+            'actual_end', 
+            'actual_break',
+            'notes',
+            'submitted_at',
+            'approved_at'
+        ])
+        ->withTimestamps();
+}
 
     public function project()
     {

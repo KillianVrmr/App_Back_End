@@ -27,10 +27,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name', 'lastname', 'email', 'password',
-        'function_id', 'role_id', 'emergency_contact', 'blood_type', 'contact_number',
+        'name',
+        'lastname',
+        'email',
+        'password',
+        'function_id',
+        'role_id',
+        'emergency_contact',
+        'blood_type',
+        'contact_number',
     ];
-    
+
     public function function()
     {
         return $this->belongsTo(Functions::class, 'function_id');
@@ -55,15 +62,23 @@ class User extends Authenticatable
         return $this->belongsToMany(Project::class, 'user_project');
     }
 
-    public function timesheets() 
+    public function timesheets()
     {
         return $this->BelongsToMany(Timesheet::class);
     }
 
     public function shifts()
     {
-        return $this->belongsToMany(Shift::class, 'shift_user', 'user_id', 'shift_id');
-
+        return $this->belongsToMany(Shift::class, 'shift_user')
+            ->withPivot([
+                'actual_start',
+                'actual_end',
+                'actual_break',
+                'notes',
+                'submitted_at',
+                'approved_at'
+            ])
+            ->withTimestamps();
     }
     /**
      * Get the attributes that should be cast.

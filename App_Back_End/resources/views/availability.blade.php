@@ -7,20 +7,25 @@
     <title>Beschikbaarheid</title>
   </head>
 
-<body class="bg-deeppurple">
+  <body class="bg-deeppurple font-dmsans">
     <div class="flex">
-        <div class="sidebar-container">
+        <div>
             <x-sidebar></x-sidebar>
         </div>
-        <div class="p-16 w-flex1 h-screen">
-            <h1 class="font-bold text-3xl text-white">Beschikbaarheid</h1>
-            <div id="calendar" class="rounded overflow-hidden mt-4 h-[70vh] w-[50vw]"></div>
-        </div>
-        <div class="h-screen py-24 flex flex-col">
-            <button id="available" class="bg-green px-8 py-4 m-4 text-white rounded w-48">Beschikbaar</button>
-            <button id="unavailable" class="bg-red-400 px-8 py-4 m-4 text-white rounded w-48">Niet beschikbaar</button>
+
+        <div class="flex flex-1 h-screen">
+            <div class="p-16 flex-1">
+                <h1 class="font-bold text-3xl text-white">Beschikbaarheid</h1>
+                <div id="calendar" class="rounded overflow-hidden mt-4 h-[70vh] w-[50vw]"></div>
+            </div>
+
+            <div class="h-screen py-24 flex flex-col items-center">
+                <button id="available" class="bg-green px-8 py-4 m-4 mr-6 text-white rounded w-48">Beschikbaar</button>
+                <button id="unavailable" class="bg-red-400 px-8 py-4 m-4 mr-6 text-white rounded w-48">Niet beschikbaar</button>
+            </div>
         </div>
     </div>
 </body>
+
 
 </html>

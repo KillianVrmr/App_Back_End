@@ -35,8 +35,8 @@
     <!-- Navigation -->
     <nav class="absolute top-0 left-0 right-0 z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="text-white font-bold text-xl">
-                LOGO
+            <div class="max-w-md mt-4">
+                <img src="/images/logowit.png" class="max-w-[40%]" alt="logo">
             </div>
             <div class="hidden md:flex space-x-8">
                 <a href="#" class="text-white hover:text-green-400 transition-colors">Over ons</a>

@@ -14,7 +14,7 @@
         
          <x-sidebar></x-sidebar>
         
-        <div class="main-content">
+        <div class="main-content flex-1 overflow-y-auto">
             <div class="p-16">
 
                 <h1 class="font-bold text-3xl text-white">Alle projecten</h1>
