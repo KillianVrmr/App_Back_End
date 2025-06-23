@@ -27,4 +27,19 @@ class ApproveHoursController extends Controller
 
         return redirect()->route('approve_hours')->with('success', 'Shift goedgekeurd!');
     }
+
+    public function update(Request $request, $shiftId)
+    {
+        $request->validate([
+            'actual_start' => 'required|date',
+            'actual_end' => 'required|date|after:actual_start',
+        ]);
+
+        $shift = Shift::findOrFail($shiftId);
+        $shift->actual_start = $request->input('actual_start');
+        $shift->actual_end = $request->input('actual_end');
+        $shift->save();
+
+        return redirect()->route('approve_hours')->with('success', 'Uren aangepast!');
+    }
 }
