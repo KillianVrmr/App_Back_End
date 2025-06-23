@@ -28,11 +28,11 @@ class PlanningController extends Controller
 
         // Alle shifts waar deze user aan gekoppeld is
         $shifts = $user->shifts()
-            ->whereBetween('planned_start', [$start, $end])
+            ->whereBetween('shifts.planned_start', [$start, $end])
             ->get()
             ->map(function ($shift) {
                 return [
-                    'title' => 'Shift: ' . \Carbon\Carbon::parse($shift->planned_start)->format('H:i') . ' - ' . \Carbon\Carbon::parse($shift->planned_end)->format('H:i'),
+                    'title' => 'Shift', 
                     'start' => $shift->planned_start,
                     'allDay' => false,
                     'end' => $shift->planned_end, 
