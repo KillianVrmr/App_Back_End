@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApproveHoursController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AvailabilityController;
@@ -48,7 +49,7 @@ Route::get('/projects/{project}/crew', function (Project $project) {
 
 Route::post('/projects/{project}/assign-crew', [ProjectController::class, 'assignCrew'])->name('projects.assignCrew');
 
-
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 
 Route::get('/projects/{project}/chat', function (Project $project) {
@@ -104,4 +105,4 @@ Route::middleware('auth')->group(function() {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.get');
     });
  
- 
+  

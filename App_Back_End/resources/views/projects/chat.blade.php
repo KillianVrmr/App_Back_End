@@ -47,12 +47,21 @@
             background-color: #fee2e2;
             color: #991b1b;
         }
+        .sidebar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            z-index: 100;
+            background: #222;
+        }
     </style>
 </head>
 <body>
 <div>
     <div class="flex">
-        <div>
+        <div class="sidebar-container">
             <x-sidebar></x-sidebar>
         </div>
         <div class="p-16 w-full h-screen">
@@ -93,7 +102,7 @@
             const messageElement = document.createElement('div');
             messageElement.className = 'message';
             const time = new Date(message.created_at).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            const username = message.user ? `${message.user.firstname} ${message.user.lastname}` : 'User';
+            const username = message.user ? `${message.user.name} ${message.user.lastname}` : 'User';
             messageElement.innerHTML = `
                 <div class="message-username">${escapeHtml(username)}</div>
                 <div class="message-content">${escapeHtml(message.message_text)}</div>

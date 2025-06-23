@@ -40,6 +40,8 @@ class ProjectController extends Controller
             // Add file_id to validated data
             $validatedData['file_id'] = $fileModel->id;
         }
+
+        unset($validatedData['filename']);
         // Create and save the new project
         Project::create($validatedData);
 
@@ -48,11 +50,18 @@ class ProjectController extends Controller
     }
 
     
+    
     public function show($id)
     {
         $project = Project::with('file')->findOrFail($id); // throws 404 if not found
 
     return view('projects.project', compact('project'));
+    }
+
+    public function index()
+    {
+        $projects = Project::all();
+        return $projects;
     }
 
     public function assignCrew(Request $request, $projectId)

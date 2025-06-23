@@ -5,7 +5,7 @@
     <title>Sidebar Test</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-100 font-dmsans">
+<body class="bg-deepblue font-dmsans">
     <div class="flex">
         <!-- Sidebar -->
         <div class="w-64 h-screen bg-deepblue flex flex-col">
@@ -37,6 +37,9 @@
                         <li>
                             <a href="/urenindienen" class="block text-white hover:text-green transition-colors py-2">Uren indienen</a>
                         </li>
+                        <li>
+                            <a href="/urengoedkeuren" class="block text-white hover:text-green transition-colors py-2">Uren goedkeuren</a>
+                        </li>
                     </ul>
                     
                     <!-- Divider -->
@@ -45,10 +48,11 @@
                     <!-- Chats Section -->
                     <div class="mb-4">
                         <h3 class="text-white font-medium mb-3">Chats</h3>
+                        <x-sidebar_chat></x-sidebar_chat>
                     </div>
                 </div>
 
-                <!-- Logout at the bottom -->
+                
                 <div>
                     <a href="{{ route('logout.get') }}" class="text-white hover:text-green transition-colors text-sm">Logout</a>
                 </div>
