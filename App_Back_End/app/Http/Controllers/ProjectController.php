@@ -40,17 +40,8 @@ class ProjectController extends Controller
             // Add file_id to validated data
             $validatedData['file_id'] = $fileModel->id;
         }
-        if ($request->hasFile('plans')) {
-            foreach ($request->file('plans') as $file) {
-                $path = $file->store('uploads/extra_files', 'public');
 
-        // Save the path in the files table
-                \App\Models\File::create([
-                    'path' => $path, 
-                    'filename' => $file->getClientOriginalName(),
-                ]);
-            }
-        }
+        unset($validatedData['filename']);
         // Create and save the new project
         Project::create($validatedData);
 

@@ -208,3 +208,12 @@
 .fc-scroller::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
+.sidebar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            z-index: 100;
+            background: #222;
+        }

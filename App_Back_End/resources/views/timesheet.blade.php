@@ -9,7 +9,7 @@
 
 <body class="bg-deeppurple">
     <div class="flex">
-        <div>
+        <div class= "sidebar-container">
             <x-sidebar></x-sidebar>
         </div>
         <div class="p-16 w-full h-screen overflow-y-auto">
